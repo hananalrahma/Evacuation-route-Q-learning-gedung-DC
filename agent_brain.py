@@ -72,4 +72,20 @@ class QLearningTable:
         # mendapatkan koordinat final route dari env.py
         e = final_states()
 
-        
+        # mengkoparasikan imdex dengan koordinat dan menulis di dalam Q-table values
+        for i in range(len(e)):
+            state = str(e[i])
+            # mengecek semua index
+            for j in range(len(self.q_table.index)):
+                if self.q_table.index[j] == state:
+                    self.q_table_final.loc[state, :] = self.q_table.loc[state, :]
+
+        print()
+        print('Length of final Q-table =', len(self.q_table_final.index))
+        print('Final Q-table with values from the final route:')
+        print(self.q_table_final)
+
+        print()
+        print('Length of full Q-table=', len(self.q_table.index))
+        print('Full Q-table:')
+        print(self.q_table)
