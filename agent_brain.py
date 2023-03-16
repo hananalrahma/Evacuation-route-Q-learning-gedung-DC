@@ -89,3 +89,35 @@ class QLearningTable:
         print('Length of full Q-table=', len(self.q_table.index))
         print('Full Q-table:')
         print(self.q_table)
+
+    # merencanakan hasil untuk jumlah langkah
+    def plot_results(self, steps, cost):
+
+        f, (ax1, ax2) = plt.subplot(nrows=1, ncols=2)
+
+        ax1.plot(np.arange(len(steps)), steps, 'b')
+        ax1.set_xlabel('Episode')
+        ax1.set_ylabel('Steps')
+        ax1.set_title('Episode via steps')
+
+        ax2.plot(np.arange(len(cost)), cost, 'r')
+        ax2.set_xlabel('Episode')
+        ax2.set_ylabel('Cost')
+        ax2.set_title('Episode via cost')
+
+        plt.tight_layout()
+
+        plt.figure()
+        plt.plot(np.arange(len(steps)), steps, 'b')
+        plt.title('Episode via steps')
+        plt.xlabel('Episode')
+        plt.ylabel('Steps')
+
+        plt.figure()
+        plt.plot(np.arange(len(cost)), cost, 'r')
+        plt.title('Episode via cost')
+        plt.xlabel('Episode')
+        plt.ylabel('Cost')
+
+        # menampilkan plots
+        plt.show()
