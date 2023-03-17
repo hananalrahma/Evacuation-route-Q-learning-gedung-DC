@@ -1,5 +1,3 @@
-
-# Importing classes
 from env import Environment
 from agent_brain import QLearningTable
 
@@ -16,10 +14,10 @@ def update():
         observation = env.reset()
         
 
-        # Updating number of Steps for each Episode
+        # update jumlah step untuk tiap episode
         i = 0
 
-        # Updating the cost for each episode
+        # update cost untuk setiap episode
         cost = 0
 
         while True:
@@ -48,7 +46,7 @@ def update():
                 all_costs += [cost]
                 break
 
-    # Showing the final route
+    # memperlihatkan final route
     env.final()
 
     # Showing the Q-table with values for each action

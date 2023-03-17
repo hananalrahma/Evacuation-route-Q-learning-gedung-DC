@@ -3198,7 +3198,7 @@ class Environment(tk.Tk, object):
                             self.coords_obstacle84,
                             self.coords_obstacle85,
                             self.coords_obstacle86,
-                            self.coords_obstacle87,
+                            # self.coords_obstacle87,
                             self.coords_obstacle88,
                             self.coords_obstacle89,
                             self.coords_obstacle90,
