@@ -33,7 +33,7 @@ class QLearningTable:
             state_action = state_action.reindex(np.random.permutation(state_action.index))
             action = state_action.idxmax()
         else:
-            # pemilihan tindakan acak yang tersisa 10% maka dipilihi aksi random
+            # pemilihan tindakan acak yang tersisa 10% maka dipilih aksi random
             action = np.random.choice(self.actions)
         return action
     

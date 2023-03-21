@@ -1,7 +1,7 @@
 import numpy as np
 import tkinter as tk
 import time
-from PIL import Image, ImageTk
+# from PIL import Image, ImageTk
 
 # mengatur besar env
 pixels = 20
@@ -51,8 +51,8 @@ class Environment(tk.Tk, object):
             x0, y0, x1, y1 = 0, row, env_height * pixels, row
             self.canvas_widget.create_line(x0, y0, x1, y1, fill='grey')
 
-        # Creating objects of  Obstacles
-        # An array to help with building rectangles
+        # membuat objek untuk obstacle
+        # array untuk membantu membuat kotak
         self.o = np.array([pixels / 2, pixels / 2])
 
         # Obstacle 1

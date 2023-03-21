@@ -10,7 +10,7 @@ def update():
     all_costs = []
 
     for episode in range(5000):
-        # Initial Observation
+        # observasi awal
         observation = env.reset()
         
 
@@ -21,26 +21,26 @@ def update():
         cost = 0
 
         while True:
-            # Refreshing environment
+            # me-refresh env
             env.render()
 
-            # RL chooses action based on observation
+            # RL memilih aksi berdasarkan observasi
             action = RL.choose_action(str(observation))
 
-            # RL takes an action and get the next observation and reward
+            # RL mengambil aksi dan mendapatkan observasi baru dan reward
             observation_, reward, done = env.step(action)
 
-            # RL learns from this transition and calculating the cost
+            # RL belajar dari transisi ini dan menghitung cost
             cost += RL.learn(str(observation), action, reward, str(observation_))
 
             # Swapping the observations - current and next
             observation = observation_
 
-            # Calculating number of Steps in the current Episode
+            # menghitung jumlah steps pada episode saat ini
             i += 1
 
-            # Break while loop when it is the end of current Episode
-            # When agent reached the goal or obstacle
+            # break "while loop" jika sudah mencapai akhir dari episode saat ini
+            # break ketika agen mencapai goal atau menabrak obstacle
             if done:
                 steps += [i]
                 all_costs += [cost]
@@ -58,10 +58,10 @@ def update():
 
 # Commands to be implemented after running this file
 if __name__ == "__main__":
-    # Calling for the environment
+    # memanggil env
     env = Environment()
-    # Calling for the main algorithm
+    # memanggil algoritma q-learning
     RL = QLearningTable(actions=list(range(env.n_actions)))
-    # Running the main loop with Episodes by calling the function update()
+    # Running the main loop with Episodes by calling the function update().
     env.after(100, update)  # Or just update()
     env.mainloop()
