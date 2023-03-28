@@ -13,7 +13,6 @@ def update():
         # observasi awal
         observation = env.reset()
         
-
         # update jumlah step untuk tiap episode
         i = 0
 
