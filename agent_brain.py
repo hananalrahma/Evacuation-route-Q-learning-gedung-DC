@@ -24,7 +24,7 @@ class QLearningTable:
 
     # fungsi untuk memilih aksi untuk agent
     def choose_action(self, observation):
-        # mengecek jika ada state yang tersedia di dalam table
+        # mengecek jika ada state yang tersedia di dalam tabel
         self.check_state_exist(observation)
         # pemilihan tindakan 90%. berdasarkan epsilon == 0.9
         # memilih aksi terbaik
