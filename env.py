@@ -45,15 +45,89 @@ class Environment(tk.Tk, object):
         # membuat grid lines
         for column in range(0, env_width * pixels, pixels):
             x0, y0, x1, y1 = column, 0, column, env_height * pixels
-            self.canvas_widget.create_line(x0, y0, x1, y1, fill='grey')
+            self.canvas_widget.create_line(x0, y0, x1, y1, fill='black')
         for row in range(0, env_height * pixels, pixels):
             x0, y0, x1, y1 = 0, row, env_height * pixels, row
-            self.canvas_widget.create_line(x0, y0, x1, y1, fill='grey')
+            self.canvas_widget.create_line(x0, y0, x1, y1, fill='black')
 
         # membuat objek untuk obstacle
         # array untuk membantu membuat kotak
         self.o = np.array([pixels / 2, pixels / 2])
 
+        # Defining the center of obstacle 1
+        obstacle1_center = self.o + np.array([pixels * 0, pixels * 0])
+        # Building the obstacle 1
+        self.obstacle1 = self.canvas_widget.create_rectangle(
+            obstacle1_center[0] - 10, obstacle1_center[1] - 10,  # Top left corner
+            obstacle1_center[0] + 10, obstacle1_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 1 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle1 = [self.canvas_widget.coords(self.obstacle1)[0] + 3,
+         self.canvas_widget.coords(self.obstacle1)[1] + 3,
+         self.canvas_widget.coords(self.obstacle1)[2] - 3,
+         self.canvas_widget.coords(self.obstacle1)[3] - 3]
+
+        # Obstacle 2
+        # Defining the center of obstacle 2
+        obstacle2_center = self.o + np.array([pixels * 0, pixels * 1])
+        # Building the obstacle 2
+        self.obstacle2 = self.canvas_widget.create_rectangle(
+            obstacle2_center[0] - 10, obstacle2_center[1] - 10,  # Top left corner
+            obstacle2_center[0] + 10, obstacle2_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 2 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle2 = [self.canvas_widget.coords(self.obstacle2)[0] + 3,
+         self.canvas_widget.coords(self.obstacle2)[1] + 3,
+         self.canvas_widget.coords(self.obstacle2)[2] - 3,
+         self.canvas_widget.coords(self.obstacle2)[3] - 3]
+
+        # Obstacle 3
+        # Defining the center of obstacle 3
+        obstacle3_center = self.o + np.array([pixels * 0, pixels * 2])
+        # Building the obstacle 3
+        self.obstacle3 = self.canvas_widget.create_rectangle(
+            obstacle3_center[0] - 10, obstacle3_center[1] - 10,  # Top left corner
+            obstacle3_center[0] + 10, obstacle3_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 3 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle3 = [self.canvas_widget.coords(self.obstacle3)[0] + 3,
+         self.canvas_widget.coords(self.obstacle3)[1] + 3,
+         self.canvas_widget.coords(self.obstacle3)[2] - 3,
+         self.canvas_widget.coords(self.obstacle3)[3] - 3]
+
+        # Obstacle 4
+        # Defining the center of obstacle 4
+        obstacle4_center = self.o + np.array([pixels * 0, pixels * 3])
+        # Building the obstacle 4
+        self.obstacle4 = self.canvas_widget.create_rectangle(
+            obstacle4_center[0] - 10, obstacle4_center[1] - 10,  # Top left corner
+            obstacle4_center[0] + 10, obstacle4_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 4 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle4 = [self.canvas_widget.coords(self.obstacle4)[0] + 3,
+         self.canvas_widget.coords(self.obstacle4)[1] + 3,
+         self.canvas_widget.coords(self.obstacle4)[2] - 3,
+         self.canvas_widget.coords(self.obstacle4)[3] - 3]
+
+        # Obstacle 5
+        # Defining the center of obstacle 5
+        obstacle5_center = self.o + np.array([pixels * 0, pixels * 4])
+        # Building the obstacle 5
+        self.obstacle5 = self.canvas_widget.create_rectangle(
+            obstacle5_center[0] - 10, obstacle5_center[1] - 10,  # Top left corner
+            obstacle5_center[0] + 10, obstacle5_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 2 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle5 = [self.canvas_widget.coords(self.obstacle5)[0] + 3,
+         self.canvas_widget.coords(self.obstacle5)[1] + 3,
+         self.canvas_widget.coords(self.obstacle5)[2] - 3,
+         self.canvas_widget.coords(self.obstacle5)[3] - 3]
+        
         # Obstacle 6
         # Defining the center of obstacle 6
         obstacle6_center = self.o + np.array([pixels * 0, pixels * 5])
@@ -61,13 +135,73 @@ class Environment(tk.Tk, object):
         self.obstacle6 = self.canvas_widget.create_rectangle(
             obstacle6_center[0] - 10, obstacle6_center[1] - 10,  # Top left corner
             obstacle6_center[0] + 10, obstacle6_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 6 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle6 = [self.canvas_widget.coords(self.obstacle6)[0] + 3,
          self.canvas_widget.coords(self.obstacle6)[1] + 3,
          self.canvas_widget.coords(self.obstacle6)[2] - 3,
          self.canvas_widget.coords(self.obstacle6)[3] - 3]
+        
+        # Obstacle 7
+        # Defining the center of obstacle 7
+        obstacle7_center = self.o + np.array([pixels * 0, pixels * 6])
+        # Building the obstacle 7
+        self.obstacle7 = self.canvas_widget.create_rectangle(
+            obstacle7_center[0] - 10, obstacle7_center[1] - 10,  # Top left corner
+            obstacle7_center[0] + 10, obstacle7_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 7 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle7 = [self.canvas_widget.coords(self.obstacle7)[0] + 3,
+         self.canvas_widget.coords(self.obstacle7)[1] + 3,
+         self.canvas_widget.coords(self.obstacle7)[2] - 3,
+         self.canvas_widget.coords(self.obstacle7)[3] - 3]
+
+        # Obstacle 8
+        # Defining the center of obstacle 8
+        obstacle8_center = self.o + np.array([pixels * 0, pixels * 7])
+        # Building the obstacle 8
+        self.obstacle8 = self.canvas_widget.create_rectangle(
+            obstacle8_center[0] - 10, obstacle8_center[1] - 10,  # Top left corner
+            obstacle8_center[0] + 10, obstacle8_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 8 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle8 = [self.canvas_widget.coords(self.obstacle8)[0] + 3,
+         self.canvas_widget.coords(self.obstacle8)[1] + 3,
+         self.canvas_widget.coords(self.obstacle8)[2] - 3,
+         self.canvas_widget.coords(self.obstacle8)[3] - 3]
+
+        # Obstacle 9
+        # Defining the center of obstacle 9
+        obstacle9_center = self.o + np.array([pixels * 0, pixels * 8])
+        # Building the obstacle 9
+        self.obstacle9 = self.canvas_widget.create_rectangle(
+            obstacle9_center[0] - 10, obstacle9_center[1] - 10,  # Top left corner
+            obstacle9_center[0] + 10, obstacle9_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 9 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle9 = [self.canvas_widget.coords(self.obstacle9)[0] + 3,
+         self.canvas_widget.coords(self.obstacle9)[1] + 3,
+         self.canvas_widget.coords(self.obstacle9)[2] - 3,
+         self.canvas_widget.coords(self.obstacle9)[3] - 3]
+
+        # Obstacle 10
+        # Defining the center of obstacle 10
+        obstacle10_center = self.o + np.array([pixels * 0, pixels * 9])
+        # Building the obstacle 10
+        self.obstacle10 = self.canvas_widget.create_rectangle(
+            obstacle10_center[0] - 10, obstacle10_center[1] - 10,  # Top left corner
+            obstacle10_center[0] + 10, obstacle10_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 10 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle10 = [self.canvas_widget.coords(self.obstacle10)[0] + 3,
+         self.canvas_widget.coords(self.obstacle10)[1] + 3,
+         self.canvas_widget.coords(self.obstacle10)[2] - 3,
+         self.canvas_widget.coords(self.obstacle10)[3] - 3]
 
         # Obstacle 11
         # Defining the center of obstacle 11
@@ -76,13 +210,118 @@ class Environment(tk.Tk, object):
         self.obstacle11 = self.canvas_widget.create_rectangle(
             obstacle11_center[0] - 10, obstacle11_center[1] - 10,  # Top left corner
             obstacle11_center[0] + 10, obstacle11_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 11 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle11 = [self.canvas_widget.coords(self.obstacle11)[0] + 3,
          self.canvas_widget.coords(self.obstacle11)[1] + 3,
          self.canvas_widget.coords(self.obstacle11)[2] - 3,
          self.canvas_widget.coords(self.obstacle11)[3] - 3]
+        
+        # Obstacle 12
+        # Defining the center of obstacle 12
+        obstacle12_center = self.o + np.array([pixels * 0, pixels * 11])
+        # Building the obstacle 12
+        self.obstacle12 = self.canvas_widget.create_rectangle(
+            obstacle12_center[0] - 10, obstacle12_center[1] - 10,  # Top left corner
+            obstacle12_center[0] + 10, obstacle12_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 12 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle12 = [self.canvas_widget.coords(self.obstacle12)[0] + 3,
+         self.canvas_widget.coords(self.obstacle12)[1] + 3,
+         self.canvas_widget.coords(self.obstacle12)[2] - 3,
+         self.canvas_widget.coords(self.obstacle12)[3] - 3]
+
+        # Obstacle 13
+        # Defining the center of obstacle 13
+        obstacle13_center = self.o + np.array([pixels * 0, pixels * 12])
+        # Building the obstacle 13
+        self.obstacle13 = self.canvas_widget.create_rectangle(
+            obstacle13_center[0] - 10, obstacle13_center[1] - 10,  # Top left corner
+            obstacle13_center[0] + 10, obstacle13_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 13 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle13 = [self.canvas_widget.coords(self.obstacle13)[0] + 3,
+         self.canvas_widget.coords(self.obstacle13)[1] + 3,
+         self.canvas_widget.coords(self.obstacle13)[2] - 3,
+         self.canvas_widget.coords(self.obstacle13)[3] - 3]
+
+        # Obstacle 14
+        # Defining the center of obstacle 14
+        obstacle14_center = self.o + np.array([pixels * 0, pixels * 13])
+        # Building the obstacle 14
+        self.obstacle14 = self.canvas_widget.create_rectangle(
+            obstacle14_center[0] - 10, obstacle14_center[1] - 10,  # Top left corner
+            obstacle14_center[0] + 10, obstacle14_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 14 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle14 = [self.canvas_widget.coords(self.obstacle14)[0] + 3,
+         self.canvas_widget.coords(self.obstacle14)[1] + 3,
+         self.canvas_widget.coords(self.obstacle14)[2] - 3,
+         self.canvas_widget.coords(self.obstacle14)[3] - 3]
+
+        # Obstacle 15
+        # Defining the center of obstacle 15
+        obstacle15_center = self.o + np.array([pixels * 0, pixels * 14])
+        # Building the obstacle 15
+        self.obstacle15 = self.canvas_widget.create_rectangle(
+            obstacle15_center[0] - 10, obstacle15_center[1] - 10,  # Top left corner
+            obstacle15_center[0] + 10, obstacle15_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 15 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle15 = [self.canvas_widget.coords(self.obstacle15)[0] + 3,
+         self.canvas_widget.coords(self.obstacle15)[1] + 3,
+         self.canvas_widget.coords(self.obstacle15)[2] - 3,
+         self.canvas_widget.coords(self.obstacle15)[3] - 3]
+
+        # Obstacle 16
+        # Defining the center of obstacle 16
+        obstacle16_center = self.o + np.array([pixels * 0, pixels * 15])
+        # Building the obstacle 16
+        self.obstacle16 = self.canvas_widget.create_rectangle(
+            obstacle16_center[0] - 10, obstacle16_center[1] - 10,  # Top left corner
+            obstacle16_center[0] + 10, obstacle16_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 16 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle16 = [self.canvas_widget.coords(self.obstacle16)[0] + 3,
+         self.canvas_widget.coords(self.obstacle16)[1] + 3,
+         self.canvas_widget.coords(self.obstacle16)[2] - 3,
+         self.canvas_widget.coords(self.obstacle16)[3] - 3]
+
+        # Obstacle 17
+        # Defining the center of obstacle 17
+        obstacle17_center = self.o + np.array([pixels * 0, pixels * 16])
+        # Building the obstacle 17
+        self.obstacle17 = self.canvas_widget.create_rectangle(
+            obstacle17_center[0] - 10, obstacle17_center[1] - 10,  # Top left corner
+            obstacle17_center[0] + 10, obstacle17_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 17 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle17 = [self.canvas_widget.coords(self.obstacle17)[0] + 3,
+         self.canvas_widget.coords(self.obstacle17)[1] + 3,
+         self.canvas_widget.coords(self.obstacle17)[2] - 3,
+         self.canvas_widget.coords(self.obstacle17)[3] - 3]
+
+        # Obstacle 18
+        # Defining the center of obstacle 18
+        obstacle18_center = self.o + np.array([pixels * 0, pixels * 17])
+        # Building the obstacle 18
+        self.obstacle18 = self.canvas_widget.create_rectangle(
+            obstacle18_center[0] - 10, obstacle18_center[1] - 10,  # Top left corner
+            obstacle18_center[0] + 10, obstacle18_center[1] + 10,  # Bottom right corner
+            outline='black', fill='blue')
+        # Saving the coordinates of obstacle 18 according to the size of agent
+        # In order to fit the coordinates of the agent
+        self.coords_obstacle18 = [self.canvas_widget.coords(self.obstacle18)[0] + 3,
+         self.canvas_widget.coords(self.obstacle18)[1] + 3,
+         self.canvas_widget.coords(self.obstacle18)[2] - 3,
+         self.canvas_widget.coords(self.obstacle18)[3] - 3]
 
         # Obstacle 19
         # Defining the center of obstacle 19
@@ -91,7 +330,7 @@ class Environment(tk.Tk, object):
         self.obstacle19 = self.canvas_widget.create_rectangle(
             obstacle19_center[0] - 10, obstacle19_center[1] - 10,  # Top left corner
             obstacle19_center[0] + 10, obstacle19_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 19 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle19 = [self.canvas_widget.coords(self.obstacle19)[0] + 3,
@@ -106,7 +345,7 @@ class Environment(tk.Tk, object):
         self.obstacle20 = self.canvas_widget.create_rectangle(
             obstacle20_center[0] - 10, obstacle20_center[1] - 10,  # Top left corner
             obstacle20_center[0] + 10, obstacle20_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 20 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle20 = [self.canvas_widget.coords(self.obstacle20)[0] + 3,
@@ -121,7 +360,7 @@ class Environment(tk.Tk, object):
         self.obstacle21 = self.canvas_widget.create_rectangle(
             obstacle21_center[0] - 10, obstacle21_center[1] - 10,  # Top left corner
             obstacle21_center[0] + 10, obstacle21_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 21 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle21 = [self.canvas_widget.coords(self.obstacle21)[0] + 3,
@@ -136,7 +375,7 @@ class Environment(tk.Tk, object):
         self.obstacle22 = self.canvas_widget.create_rectangle(
             obstacle22_center[0] - 10, obstacle22_center[1] - 10,  # Top left corner
             obstacle22_center[0] + 10, obstacle22_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 22 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle22 = [self.canvas_widget.coords(self.obstacle22)[0] + 3,
@@ -151,7 +390,7 @@ class Environment(tk.Tk, object):
         self.obstacle23 = self.canvas_widget.create_rectangle(
             obstacle23_center[0] - 10, obstacle23_center[1] - 10,  # Top left corner
             obstacle23_center[0] + 10, obstacle23_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 23 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle23 = [self.canvas_widget.coords(self.obstacle23)[0] + 3,
@@ -166,7 +405,7 @@ class Environment(tk.Tk, object):
         self.obstacle24 = self.canvas_widget.create_rectangle(
             obstacle24_center[0] - 10, obstacle24_center[1] - 10,  # Top left corner
             obstacle24_center[0] + 10, obstacle24_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 24 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle24 = [self.canvas_widget.coords(self.obstacle24)[0] + 3,
@@ -181,7 +420,7 @@ class Environment(tk.Tk, object):
         self.obstacle25 = self.canvas_widget.create_rectangle(
             obstacle25_center[0] - 10, obstacle25_center[1] - 10,  # Top left corner
             obstacle25_center[0] + 10, obstacle25_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 25 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle25 = [self.canvas_widget.coords(self.obstacle25)[0] + 3,
@@ -196,7 +435,7 @@ class Environment(tk.Tk, object):
         self.obstacle26 = self.canvas_widget.create_rectangle(
             obstacle26_center[0] - 10, obstacle26_center[1] - 10,  # Top left corner
             obstacle26_center[0] + 10, obstacle26_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 26 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle26 = [self.canvas_widget.coords(self.obstacle26)[0] + 3,
@@ -211,7 +450,7 @@ class Environment(tk.Tk, object):
         self.obstacle27 = self.canvas_widget.create_rectangle(
             obstacle27_center[0] - 10, obstacle27_center[1] - 10,  # Top left corner
             obstacle27_center[0] + 10, obstacle27_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 27 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle27 = [self.canvas_widget.coords(self.obstacle27)[0] + 3,
@@ -226,7 +465,7 @@ class Environment(tk.Tk, object):
         self.obstacle28 = self.canvas_widget.create_rectangle(
             obstacle28_center[0] - 10, obstacle28_center[1] - 10,  # Top left corner
             obstacle28_center[0] + 10, obstacle28_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 28 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle28 = [self.canvas_widget.coords(self.obstacle28)[0] + 3,
@@ -241,7 +480,7 @@ class Environment(tk.Tk, object):
         self.obstacle29 = self.canvas_widget.create_rectangle(
             obstacle29_center[0] - 10, obstacle29_center[1] - 10,  # Top left corner
             obstacle29_center[0] + 10, obstacle29_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 29 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle29 = [self.canvas_widget.coords(self.obstacle29)[0] + 3,
@@ -256,7 +495,7 @@ class Environment(tk.Tk, object):
         self.obstacle30 = self.canvas_widget.create_rectangle(
             obstacle30_center[0] - 10, obstacle30_center[1] - 10,  # Top left corner
             obstacle30_center[0] + 10, obstacle30_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 30 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle30 = [self.canvas_widget.coords(self.obstacle30)[0] + 3,
@@ -271,7 +510,7 @@ class Environment(tk.Tk, object):
         self.obstacle31 = self.canvas_widget.create_rectangle(
             obstacle31_center[0] - 10, obstacle31_center[1] - 10,  # Top left corner
             obstacle31_center[0] + 10, obstacle31_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 31 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle31 = [self.canvas_widget.coords(self.obstacle31)[0] + 3,
@@ -286,7 +525,7 @@ class Environment(tk.Tk, object):
         self.obstacle32 = self.canvas_widget.create_rectangle(
             obstacle32_center[0] - 10, obstacle32_center[1] - 10,  # Top left corner
             obstacle32_center[0] + 10, obstacle32_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 32 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle32 = [self.canvas_widget.coords(self.obstacle32)[0] + 3,
@@ -301,7 +540,7 @@ class Environment(tk.Tk, object):
         self.obstacle33 = self.canvas_widget.create_rectangle(
             obstacle33_center[0] - 10, obstacle33_center[1] - 10,  # Top left corner
             obstacle33_center[0] + 10, obstacle33_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 33 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle33 = [self.canvas_widget.coords(self.obstacle33)[0] + 3,
@@ -316,7 +555,7 @@ class Environment(tk.Tk, object):
         self.obstacle34 = self.canvas_widget.create_rectangle(
             obstacle34_center[0] - 10, obstacle34_center[1] - 10,  # Top left corner
             obstacle34_center[0] + 10, obstacle34_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 34 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle34 = [self.canvas_widget.coords(self.obstacle34)[0] + 3,
@@ -331,7 +570,7 @@ class Environment(tk.Tk, object):
         self.obstacle35 = self.canvas_widget.create_rectangle(
             obstacle35_center[0] - 10, obstacle35_center[1] - 10,  # Top left corner
             obstacle35_center[0] + 10, obstacle35_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 35 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle35 = [self.canvas_widget.coords(self.obstacle35)[0] + 3,
@@ -346,7 +585,7 @@ class Environment(tk.Tk, object):
         self.obstacle36 = self.canvas_widget.create_rectangle(
             obstacle36_center[0] - 10, obstacle36_center[1] - 10,  # Top left corner
             obstacle36_center[0] + 10, obstacle36_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 36 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle36 = [self.canvas_widget.coords(self.obstacle36)[0] + 3,
@@ -361,7 +600,7 @@ class Environment(tk.Tk, object):
         self.obstacle37 = self.canvas_widget.create_rectangle(
             obstacle37_center[0] - 10, obstacle37_center[1] - 10,  # Top left corner
             obstacle37_center[0] + 10, obstacle37_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 37 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle37 = [self.canvas_widget.coords(self.obstacle37)[0] + 3,
@@ -376,7 +615,7 @@ class Environment(tk.Tk, object):
         self.obstacle38 = self.canvas_widget.create_rectangle(
             obstacle38_center[0] - 10, obstacle38_center[1] - 10,  # Top left corner
             obstacle38_center[0] + 10, obstacle38_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 38 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle38 = [self.canvas_widget.coords(self.obstacle38)[0] + 3,
@@ -391,7 +630,7 @@ class Environment(tk.Tk, object):
         self.obstacle39 = self.canvas_widget.create_rectangle(
             obstacle39_center[0] - 10, obstacle39_center[1] - 10,  # Top left corner
             obstacle39_center[0] + 10, obstacle39_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 39 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle39 = [self.canvas_widget.coords(self.obstacle39)[0] + 3,
@@ -406,7 +645,7 @@ class Environment(tk.Tk, object):
         self.obstacle40 = self.canvas_widget.create_rectangle(
             obstacle40_center[0] - 10, obstacle40_center[1] - 10,  # Top left corner
             obstacle40_center[0] + 10, obstacle40_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 40 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle40 = [self.canvas_widget.coords(self.obstacle40)[0] + 3,
@@ -421,7 +660,7 @@ class Environment(tk.Tk, object):
         self.obstacle41 = self.canvas_widget.create_rectangle(
             obstacle41_center[0] - 10, obstacle41_center[1] - 10,  # Top left corner
             obstacle41_center[0] + 10, obstacle41_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 41 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle41 = [self.canvas_widget.coords(self.obstacle41)[0] + 3,
@@ -436,7 +675,7 @@ class Environment(tk.Tk, object):
         self.obstacle42 = self.canvas_widget.create_rectangle(
             obstacle42_center[0] - 10, obstacle42_center[1] - 10,  # Top left corner
             obstacle42_center[0] + 10, obstacle42_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 42 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle42 = [self.canvas_widget.coords(self.obstacle42)[0] + 3,
@@ -451,7 +690,7 @@ class Environment(tk.Tk, object):
         self.obstacle43 = self.canvas_widget.create_rectangle(
             obstacle43_center[0] - 10, obstacle43_center[1] - 10,  # Top left corner
             obstacle43_center[0] + 10, obstacle43_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 43 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle43 = [self.canvas_widget.coords(self.obstacle43)[0] + 3,
@@ -466,7 +705,7 @@ class Environment(tk.Tk, object):
         self.obstacle44 = self.canvas_widget.create_rectangle(
             obstacle44_center[0] - 10, obstacle44_center[1] - 10,  # Top left corner
             obstacle44_center[0] + 10, obstacle44_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 44 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle44 = [self.canvas_widget.coords(self.obstacle44)[0] + 3,
@@ -481,7 +720,7 @@ class Environment(tk.Tk, object):
         self.obstacle45 = self.canvas_widget.create_rectangle(
             obstacle45_center[0] - 10, obstacle45_center[1] - 10,  # Top left corner
             obstacle45_center[0] + 10, obstacle45_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 45 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle45 = [self.canvas_widget.coords(self.obstacle45)[0] + 3,
@@ -496,7 +735,7 @@ class Environment(tk.Tk, object):
         self.obstacle46 = self.canvas_widget.create_rectangle(
             obstacle46_center[0] - 10, obstacle46_center[1] - 10,  # Top left corner
             obstacle46_center[0] + 10, obstacle46_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 46 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle46 = [self.canvas_widget.coords(self.obstacle46)[0] + 3,
@@ -511,7 +750,7 @@ class Environment(tk.Tk, object):
         self.obstacle47 = self.canvas_widget.create_rectangle(
             obstacle47_center[0] - 10, obstacle47_center[1] - 10,  # Top left corner
             obstacle47_center[0] + 10, obstacle47_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 47 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle47 = [self.canvas_widget.coords(self.obstacle47)[0] + 3,
@@ -526,7 +765,7 @@ class Environment(tk.Tk, object):
         self.obstacle48 = self.canvas_widget.create_rectangle(
             obstacle48_center[0] - 10, obstacle48_center[1] - 10,  # Top left corner
             obstacle48_center[0] + 10, obstacle48_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 48 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle48 = [self.canvas_widget.coords(self.obstacle48)[0] + 3,
@@ -541,7 +780,7 @@ class Environment(tk.Tk, object):
         self.obstacle49 = self.canvas_widget.create_rectangle(
             obstacle49_center[0] - 10, obstacle49_center[1] - 10,  # Top left corner
             obstacle49_center[0] + 10, obstacle49_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         # Saving the coordinates of obstacle 49 according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_obstacle49 = [self.canvas_widget.coords(self.obstacle49)[0] + 3,
@@ -556,7 +795,7 @@ class Environment(tk.Tk, object):
         self.obstacle50 = self.canvas_widget.create_rectangle(
             obstacle50_center[0] - 10, obstacle50_center[1] - 10,  # Top left corner
             obstacle50_center[0] + 10, obstacle50_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle50 = [self.canvas_widget.coords(self.obstacle50)[0] + 3,
          self.canvas_widget.coords(self.obstacle50)[1] + 3,
@@ -569,7 +808,7 @@ class Environment(tk.Tk, object):
         self.obstacle51 = self.canvas_widget.create_rectangle(
             obstacle51_center[0] - 10, obstacle51_center[1] - 10,  # Top left corner
             obstacle51_center[0] + 10, obstacle51_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle51 = [self.canvas_widget.coords(self.obstacle51)[0] + 3,
          self.canvas_widget.coords(self.obstacle51)[1] + 3,
@@ -582,7 +821,7 @@ class Environment(tk.Tk, object):
         self.obstacle52 = self.canvas_widget.create_rectangle(
             obstacle52_center[0] - 10, obstacle52_center[1] - 10,  # Top left corner
             obstacle52_center[0] + 10, obstacle52_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle52 = [self.canvas_widget.coords(self.obstacle52)[0] + 3,
          self.canvas_widget.coords(self.obstacle52)[1] + 3,
@@ -594,7 +833,7 @@ class Environment(tk.Tk, object):
         self.obstacle53 = self.canvas_widget.create_rectangle(
             obstacle53_center[0] - 10, obstacle53_center[1] - 10,  # Top left corner
             obstacle53_center[0] + 10, obstacle53_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle53 = [self.canvas_widget.coords(self.obstacle53)[0] + 3,
          self.canvas_widget.coords(self.obstacle53)[1] + 3,
@@ -606,7 +845,7 @@ class Environment(tk.Tk, object):
         self.obstacle54 = self.canvas_widget.create_rectangle(
             obstacle54_center[0] - 10, obstacle54_center[1] - 10,  # Top left corner
             obstacle54_center[0] + 10, obstacle54_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
        
         self.coords_obstacle54 = [self.canvas_widget.coords(self.obstacle54)[0] + 3,
          self.canvas_widget.coords(self.obstacle54)[1] + 3,
@@ -619,7 +858,7 @@ class Environment(tk.Tk, object):
         self.obstacle55 = self.canvas_widget.create_rectangle(
             obstacle55_center[0] - 10, obstacle55_center[1] - 10,  # Top left corner
             obstacle55_center[0] + 10, obstacle55_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         self.coords_obstacle55 = [self.canvas_widget.coords(self.obstacle55)[0] + 3,
          self.canvas_widget.coords(self.obstacle55)[1] + 3,
          self.canvas_widget.coords(self.obstacle55)[2] - 3,
@@ -631,7 +870,7 @@ class Environment(tk.Tk, object):
         self.obstacle56 = self.canvas_widget.create_rectangle(
             obstacle56_center[0] - 10, obstacle56_center[1] - 10,  # Top left corner
             obstacle56_center[0] + 10, obstacle56_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle56 = [self.canvas_widget.coords(self.obstacle56)[0] + 3,
          self.canvas_widget.coords(self.obstacle56)[1] + 3,
@@ -643,7 +882,7 @@ class Environment(tk.Tk, object):
         self.obstacle57 = self.canvas_widget.create_rectangle(
             obstacle57_center[0] - 10, obstacle57_center[1] - 10,  # Top left corner
             obstacle57_center[0] + 10, obstacle57_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle57 = [self.canvas_widget.coords(self.obstacle57)[0] + 3,
          self.canvas_widget.coords(self.obstacle57)[1] + 3,
@@ -655,7 +894,7 @@ class Environment(tk.Tk, object):
         self.obstacle58 = self.canvas_widget.create_rectangle(
             obstacle58_center[0] - 10, obstacle58_center[1] - 10,  # Top left corner
             obstacle58_center[0] + 10, obstacle58_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle58 = [self.canvas_widget.coords(self.obstacle58)[0] + 3,
          self.canvas_widget.coords(self.obstacle58)[1] + 3,
@@ -669,7 +908,7 @@ class Environment(tk.Tk, object):
         self.obstacle59 = self.canvas_widget.create_rectangle(
             obstacle59_center[0] - 10, obstacle59_center[1] - 10,  # Top left corner
             obstacle59_center[0] + 10, obstacle59_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle59 = [self.canvas_widget.coords(self.obstacle59)[0] + 3,
          self.canvas_widget.coords(self.obstacle59)[1] + 3,
@@ -683,7 +922,7 @@ class Environment(tk.Tk, object):
         self.obstacle60 = self.canvas_widget.create_rectangle(
             obstacle60_center[0] - 10, obstacle60_center[1] - 10,  # Top left corner
             obstacle60_center[0] + 10, obstacle60_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle60 = [self.canvas_widget.coords(self.obstacle60)[0] + 3,
          self.canvas_widget.coords(self.obstacle60)[1] + 3,
@@ -697,7 +936,7 @@ class Environment(tk.Tk, object):
         self.obstacle61 = self.canvas_widget.create_rectangle(
             obstacle61_center[0] - 10, obstacle61_center[1] - 10,  # Top left corner
             obstacle61_center[0] + 10, obstacle61_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle61 = [self.canvas_widget.coords(self.obstacle61)[0] + 3,
          self.canvas_widget.coords(self.obstacle61)[1] + 3,
@@ -711,7 +950,7 @@ class Environment(tk.Tk, object):
         self.obstacle62 = self.canvas_widget.create_rectangle(
             obstacle62_center[0] - 10, obstacle62_center[1] - 10,  # Top left corner
             obstacle62_center[0] + 10, obstacle62_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle62 = [self.canvas_widget.coords(self.obstacle62)[0] + 3,
          self.canvas_widget.coords(self.obstacle62)[1] + 3,
@@ -725,7 +964,7 @@ class Environment(tk.Tk, object):
         self.obstacle63 = self.canvas_widget.create_rectangle(
             obstacle63_center[0] - 10, obstacle63_center[1] - 10,  # Top left corner
             obstacle63_center[0] + 10, obstacle63_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle63 = [self.canvas_widget.coords(self.obstacle63)[0] + 3,
          self.canvas_widget.coords(self.obstacle63)[1] + 3,
@@ -739,7 +978,7 @@ class Environment(tk.Tk, object):
         self.obstacle64 = self.canvas_widget.create_rectangle(
             obstacle64_center[0] - 10, obstacle64_center[1] - 10,  # Top left corner
             obstacle64_center[0] + 10, obstacle64_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle64 = [self.canvas_widget.coords(self.obstacle64)[0] + 3,
          self.canvas_widget.coords(self.obstacle64)[1] + 3,
@@ -753,7 +992,7 @@ class Environment(tk.Tk, object):
         self.obstacle65 = self.canvas_widget.create_rectangle(
             obstacle65_center[0] - 10, obstacle65_center[1] - 10,  # Top left corner
             obstacle65_center[0] + 10, obstacle65_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle65 = [self.canvas_widget.coords(self.obstacle65)[0] + 3,
          self.canvas_widget.coords(self.obstacle65)[1] + 3,
@@ -767,7 +1006,7 @@ class Environment(tk.Tk, object):
         self.obstacle66 = self.canvas_widget.create_rectangle(
             obstacle66_center[0] - 10, obstacle66_center[1] - 10,  # Top left corner
             obstacle66_center[0] + 10, obstacle66_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle66 = [self.canvas_widget.coords(self.obstacle66)[0] + 3,
          self.canvas_widget.coords(self.obstacle66)[1] + 3,
@@ -781,7 +1020,7 @@ class Environment(tk.Tk, object):
         self.obstacle67 = self.canvas_widget.create_rectangle(
             obstacle67_center[0] - 10, obstacle67_center[1] - 10,  # Top left corner
             obstacle67_center[0] + 10, obstacle67_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle67 = [self.canvas_widget.coords(self.obstacle67)[0] + 3,
          self.canvas_widget.coords(self.obstacle67)[1] + 3,
@@ -795,7 +1034,7 @@ class Environment(tk.Tk, object):
         self.obstacle68 = self.canvas_widget.create_rectangle(
             obstacle68_center[0] - 10, obstacle68_center[1] - 10,  # Top left corner
             obstacle68_center[0] + 10, obstacle68_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle68 = [self.canvas_widget.coords(self.obstacle68)[0] + 3,
          self.canvas_widget.coords(self.obstacle68)[1] + 3,
@@ -809,7 +1048,7 @@ class Environment(tk.Tk, object):
         self.obstacle69 = self.canvas_widget.create_rectangle(
             obstacle69_center[0] - 10, obstacle69_center[1] - 10,  # Top left corner
             obstacle69_center[0] + 10, obstacle69_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle69 = [self.canvas_widget.coords(self.obstacle69)[0] + 3,
          self.canvas_widget.coords(self.obstacle69)[1] + 3,
@@ -823,7 +1062,7 @@ class Environment(tk.Tk, object):
         self.obstacle70 = self.canvas_widget.create_rectangle(
             obstacle70_center[0] - 10, obstacle70_center[1] - 10,  # Top left corner
             obstacle70_center[0] + 10, obstacle70_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle70 = [self.canvas_widget.coords(self.obstacle70)[0] + 3,
          self.canvas_widget.coords(self.obstacle70)[1] + 3,
@@ -837,7 +1076,7 @@ class Environment(tk.Tk, object):
         self.obstacle71 = self.canvas_widget.create_rectangle(
             obstacle71_center[0] - 10, obstacle71_center[1] - 10,  # Top left corner
             obstacle71_center[0] + 10, obstacle71_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle71 = [self.canvas_widget.coords(self.obstacle71)[0] + 3,
          self.canvas_widget.coords(self.obstacle71)[1] + 3,
@@ -850,7 +1089,7 @@ class Environment(tk.Tk, object):
         self.obstacle72 = self.canvas_widget.create_rectangle(
             obstacle72_center[0] - 10, obstacle72_center[1] - 10,  # Top left corner
             obstacle72_center[0] + 10, obstacle72_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle72 = [self.canvas_widget.coords(self.obstacle72)[0] + 3,
          self.canvas_widget.coords(self.obstacle72)[1] + 3,
@@ -864,7 +1103,7 @@ class Environment(tk.Tk, object):
         self.obstacle73 = self.canvas_widget.create_rectangle(
             obstacle73_center[0] - 10, obstacle73_center[1] - 10,  # Top left corner
             obstacle73_center[0] + 10, obstacle73_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle73 = [self.canvas_widget.coords(self.obstacle73)[0] + 3,
          self.canvas_widget.coords(self.obstacle73)[1] + 3,
@@ -878,7 +1117,7 @@ class Environment(tk.Tk, object):
         self.obstacle74 = self.canvas_widget.create_rectangle(
             obstacle74_center[0] - 10, obstacle74_center[1] - 10,  # Top left corner
             obstacle74_center[0] + 10, obstacle74_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle74 = [self.canvas_widget.coords(self.obstacle74)[0] + 3,
          self.canvas_widget.coords(self.obstacle74)[1] + 3,
@@ -892,7 +1131,7 @@ class Environment(tk.Tk, object):
         self.obstacle75 = self.canvas_widget.create_rectangle(
             obstacle75_center[0] - 10, obstacle75_center[1] - 10,  # Top left corner
             obstacle75_center[0] + 10, obstacle75_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle75 = [self.canvas_widget.coords(self.obstacle75)[0] + 3,
          self.canvas_widget.coords(self.obstacle75)[1] + 3,
@@ -906,7 +1145,7 @@ class Environment(tk.Tk, object):
         self.obstacle76 = self.canvas_widget.create_rectangle(
             obstacle76_center[0] - 10, obstacle76_center[1] - 10,  # Top left corner
             obstacle76_center[0] + 10, obstacle76_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle76 = [self.canvas_widget.coords(self.obstacle76)[0] + 3,
          self.canvas_widget.coords(self.obstacle76)[1] + 3,
@@ -920,7 +1159,7 @@ class Environment(tk.Tk, object):
         self.obstacle77 = self.canvas_widget.create_rectangle(
             obstacle77_center[0] - 10, obstacle77_center[1] - 10,  # Top left corner
             obstacle77_center[0] + 10, obstacle77_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle77 = [self.canvas_widget.coords(self.obstacle77)[0] + 3,
          self.canvas_widget.coords(self.obstacle77)[1] + 3,
@@ -934,7 +1173,7 @@ class Environment(tk.Tk, object):
         self.obstacle78 = self.canvas_widget.create_rectangle(
             obstacle78_center[0] - 10, obstacle78_center[1] - 10,  # Top left corner
             obstacle78_center[0] + 10, obstacle78_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle78 = [self.canvas_widget.coords(self.obstacle78)[0] + 3,
          self.canvas_widget.coords(self.obstacle78)[1] + 3,
@@ -948,7 +1187,7 @@ class Environment(tk.Tk, object):
         self.obstacle79 = self.canvas_widget.create_rectangle(
             obstacle79_center[0] - 10, obstacle79_center[1] - 10,  # Top left corner
             obstacle79_center[0] + 10, obstacle79_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle79 = [self.canvas_widget.coords(self.obstacle79)[0] + 3,
          self.canvas_widget.coords(self.obstacle79)[1] + 3,
@@ -962,7 +1201,7 @@ class Environment(tk.Tk, object):
         self.obstacle80 = self.canvas_widget.create_rectangle(
             obstacle80_center[0] - 10, obstacle80_center[1] - 10,  # Top left corner
             obstacle80_center[0] + 10, obstacle80_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle80 = [self.canvas_widget.coords(self.obstacle80)[0] + 3,
          self.canvas_widget.coords(self.obstacle80)[1] + 3,
@@ -976,7 +1215,7 @@ class Environment(tk.Tk, object):
         self.obstacle81 = self.canvas_widget.create_rectangle(
             obstacle81_center[0] - 10, obstacle81_center[1] - 10,  # Top left corner
             obstacle81_center[0] + 10, obstacle81_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle81 = [self.canvas_widget.coords(self.obstacle81)[0] + 3,
          self.canvas_widget.coords(self.obstacle81)[1] + 3,
@@ -990,7 +1229,7 @@ class Environment(tk.Tk, object):
         self.obstacle82 = self.canvas_widget.create_rectangle(
             obstacle82_center[0] - 10, obstacle82_center[1] - 10,  # Top left corner
             obstacle82_center[0] + 10, obstacle82_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle82 = [self.canvas_widget.coords(self.obstacle82)[0] + 3,
          self.canvas_widget.coords(self.obstacle82)[1] + 3,
@@ -1004,7 +1243,7 @@ class Environment(tk.Tk, object):
         self.obstacle83 = self.canvas_widget.create_rectangle(
             obstacle83_center[0] - 10, obstacle83_center[1] - 10,  # Top left corner
             obstacle83_center[0] + 10, obstacle83_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle83 = [self.canvas_widget.coords(self.obstacle83)[0] + 3,
          self.canvas_widget.coords(self.obstacle83)[1] + 3,
@@ -1018,7 +1257,7 @@ class Environment(tk.Tk, object):
         self.obstacle84 = self.canvas_widget.create_rectangle(
             obstacle84_center[0] - 10, obstacle84_center[1] - 10,  # Top left corner
             obstacle84_center[0] + 10, obstacle84_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle84 = [self.canvas_widget.coords(self.obstacle84)[0] + 3,
          self.canvas_widget.coords(self.obstacle84)[1] + 3,
@@ -1032,7 +1271,7 @@ class Environment(tk.Tk, object):
         self.obstacle85 = self.canvas_widget.create_rectangle(
             obstacle85_center[0] - 10, obstacle85_center[1] - 10,  # Top left corner
             obstacle85_center[0] + 10, obstacle85_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle85 = [self.canvas_widget.coords(self.obstacle85)[0] + 3,
          self.canvas_widget.coords(self.obstacle85)[1] + 3,
@@ -1046,7 +1285,7 @@ class Environment(tk.Tk, object):
         self.obstacle86 = self.canvas_widget.create_rectangle(
             obstacle86_center[0] - 10, obstacle86_center[1] - 10,  # Top left corner
             obstacle86_center[0] + 10, obstacle86_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle86 = [self.canvas_widget.coords(self.obstacle86)[0] + 3,
          self.canvas_widget.coords(self.obstacle86)[1] + 3,
@@ -1060,7 +1299,7 @@ class Environment(tk.Tk, object):
         # self.obstacle87 = self.canvas_widget.create_rectangle(
         #     obstacle87_center[0] - 10, obstacle87_center[1] - 10,  # Top left corner
         #     obstacle87_center[0] + 10, obstacle87_center[1] + 10,  # Bottom right corner
-        #     outline='grey', fill='#000000')
+        #     outline='black', fill='blue')
         
         # self.coords_obstacle87 = [self.canvas_widget.coords(self.obstacle87)[0] + 3,
         #  self.canvas_widget.coords(self.obstacle87)[1] + 3,
@@ -1074,7 +1313,7 @@ class Environment(tk.Tk, object):
         self.obstacle88 = self.canvas_widget.create_rectangle(
             obstacle88_center[0] - 10, obstacle88_center[1] - 10,  # Top left corner
             obstacle88_center[0] + 10, obstacle88_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle88 = [self.canvas_widget.coords(self.obstacle88)[0] + 3,
          self.canvas_widget.coords(self.obstacle88)[1] + 3,
@@ -1088,7 +1327,7 @@ class Environment(tk.Tk, object):
         self.obstacle89 = self.canvas_widget.create_rectangle(
             obstacle89_center[0] - 10, obstacle89_center[1] - 10,  # Top left corner
             obstacle89_center[0] + 10, obstacle89_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle89 = [self.canvas_widget.coords(self.obstacle89)[0] + 3,
          self.canvas_widget.coords(self.obstacle89)[1] + 3,
@@ -1102,7 +1341,7 @@ class Environment(tk.Tk, object):
         self.obstacle90 = self.canvas_widget.create_rectangle(
             obstacle90_center[0] - 10, obstacle90_center[1] - 10,  # Top left corner
             obstacle90_center[0] + 10, obstacle90_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle90 = [self.canvas_widget.coords(self.obstacle90)[0] + 3,
          self.canvas_widget.coords(self.obstacle90)[1] + 3,
@@ -1116,7 +1355,7 @@ class Environment(tk.Tk, object):
         self.obstacle91 = self.canvas_widget.create_rectangle(
             obstacle91_center[0] - 10, obstacle91_center[1] - 10,  # Top left corner
             obstacle91_center[0] + 10, obstacle91_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle91 = [self.canvas_widget.coords(self.obstacle91)[0] + 3,
          self.canvas_widget.coords(self.obstacle91)[1] + 3,
@@ -1130,7 +1369,7 @@ class Environment(tk.Tk, object):
         self.obstacle92 = self.canvas_widget.create_rectangle(
             obstacle92_center[0] - 10, obstacle92_center[1] - 10,  # Top left corner
             obstacle92_center[0] + 10, obstacle92_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle92 = [self.canvas_widget.coords(self.obstacle92)[0] + 3,
          self.canvas_widget.coords(self.obstacle92)[1] + 3,
@@ -1144,7 +1383,7 @@ class Environment(tk.Tk, object):
         self.obstacle93 = self.canvas_widget.create_rectangle(
             obstacle93_center[0] - 10, obstacle93_center[1] - 10,  # Top left corner
             obstacle93_center[0] + 10, obstacle93_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle93 = [self.canvas_widget.coords(self.obstacle93)[0] + 3,
          self.canvas_widget.coords(self.obstacle93)[1] + 3,
@@ -1158,7 +1397,7 @@ class Environment(tk.Tk, object):
         self.obstacle94 = self.canvas_widget.create_rectangle(
             obstacle94_center[0] - 10, obstacle94_center[1] - 10,  # Top left corner
             obstacle94_center[0] + 10, obstacle94_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle94 = [self.canvas_widget.coords(self.obstacle94)[0] + 3,
          self.canvas_widget.coords(self.obstacle94)[1] + 3,
@@ -1172,7 +1411,7 @@ class Environment(tk.Tk, object):
         self.obstacle95 = self.canvas_widget.create_rectangle(
             obstacle95_center[0] - 10, obstacle95_center[1] - 10,  # Top left corner
             obstacle95_center[0] + 10, obstacle95_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle95 = [self.canvas_widget.coords(self.obstacle95)[0] + 3,
          self.canvas_widget.coords(self.obstacle95)[1] + 3,
@@ -1186,7 +1425,7 @@ class Environment(tk.Tk, object):
         self.obstacle96 = self.canvas_widget.create_rectangle(
             obstacle96_center[0] - 10, obstacle96_center[1] - 10,  # Top left corner
             obstacle96_center[0] + 10, obstacle96_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle96 = [self.canvas_widget.coords(self.obstacle96)[0] + 3,
          self.canvas_widget.coords(self.obstacle96)[1] + 3,
@@ -1200,7 +1439,7 @@ class Environment(tk.Tk, object):
         self.obstacle97 = self.canvas_widget.create_rectangle(
             obstacle97_center[0] - 10, obstacle97_center[1] - 10,  # Top left corner
             obstacle97_center[0] + 10, obstacle97_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle97 = [self.canvas_widget.coords(self.obstacle97)[0] + 3,
          self.canvas_widget.coords(self.obstacle97)[1] + 3,
@@ -1214,7 +1453,7 @@ class Environment(tk.Tk, object):
         self.obstacle98 = self.canvas_widget.create_rectangle(
             obstacle98_center[0] - 10, obstacle98_center[1] - 10,  # Top left corner
             obstacle98_center[0] + 10, obstacle98_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle98 = [self.canvas_widget.coords(self.obstacle98)[0] + 3,
          self.canvas_widget.coords(self.obstacle98)[1] + 3,
@@ -1228,7 +1467,7 @@ class Environment(tk.Tk, object):
         self.obstacle99 = self.canvas_widget.create_rectangle(
             obstacle99_center[0] - 10, obstacle99_center[1] - 10,  # Top left corner
             obstacle99_center[0] + 10, obstacle99_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle99 = [self.canvas_widget.coords(self.obstacle99)[0] + 3,
          self.canvas_widget.coords(self.obstacle99)[1] + 3,
@@ -1242,7 +1481,7 @@ class Environment(tk.Tk, object):
         self.obstacle100 = self.canvas_widget.create_rectangle(
             obstacle100_center[0] - 10, obstacle100_center[1] - 10,  # Top left corner
             obstacle100_center[0] + 10, obstacle100_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle100 = [self.canvas_widget.coords(self.obstacle100)[0] + 3,
          self.canvas_widget.coords(self.obstacle100)[1] + 3,
@@ -1256,7 +1495,7 @@ class Environment(tk.Tk, object):
         self.obstacle101 = self.canvas_widget.create_rectangle(
             obstacle101_center[0] - 10, obstacle101_center[1] - 10,  # Top left corner
             obstacle101_center[0] + 10, obstacle101_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle101 = [self.canvas_widget.coords(self.obstacle101)[0] + 3,
          self.canvas_widget.coords(self.obstacle101)[1] + 3,
@@ -1270,7 +1509,7 @@ class Environment(tk.Tk, object):
         self.obstacle102 = self.canvas_widget.create_rectangle(
             obstacle102_center[0] - 10, obstacle102_center[1] - 10,  # Top left corner
             obstacle102_center[0] + 10, obstacle102_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle102 = [self.canvas_widget.coords(self.obstacle102)[0] + 3,
          self.canvas_widget.coords(self.obstacle102)[1] + 3,
@@ -1284,7 +1523,7 @@ class Environment(tk.Tk, object):
         self.obstacle103 = self.canvas_widget.create_rectangle(
             obstacle103_center[0] - 10, obstacle103_center[1] - 10,  # Top left corner
             obstacle103_center[0] + 10, obstacle103_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle103 = [self.canvas_widget.coords(self.obstacle103)[0] + 3,
          self.canvas_widget.coords(self.obstacle103)[1] + 3,
@@ -1298,7 +1537,7 @@ class Environment(tk.Tk, object):
         self.obstacle104 = self.canvas_widget.create_rectangle(
             obstacle104_center[0] - 10, obstacle104_center[1] - 10,  # Top left corner
             obstacle104_center[0] + 10, obstacle104_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle104 = [self.canvas_widget.coords(self.obstacle104)[0] + 3,
          self.canvas_widget.coords(self.obstacle104)[1] + 3,
@@ -1312,7 +1551,7 @@ class Environment(tk.Tk, object):
         self.obstacle105 = self.canvas_widget.create_rectangle(
             obstacle105_center[0] - 10, obstacle105_center[1] - 10,  # Top left corner
             obstacle105_center[0] + 10, obstacle105_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle105 = [self.canvas_widget.coords(self.obstacle105)[0] + 3,
          self.canvas_widget.coords(self.obstacle105)[1] + 3,
@@ -1326,7 +1565,7 @@ class Environment(tk.Tk, object):
         self.obstacle106 = self.canvas_widget.create_rectangle(
             obstacle106_center[0] - 10, obstacle106_center[1] - 10,  # Top left corner
             obstacle106_center[0] + 10, obstacle106_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle106 = [self.canvas_widget.coords(self.obstacle106)[0] + 3,
          self.canvas_widget.coords(self.obstacle106)[1] + 3,
@@ -1340,7 +1579,7 @@ class Environment(tk.Tk, object):
         self.obstacle107 = self.canvas_widget.create_rectangle(
             obstacle107_center[0] - 10, obstacle107_center[1] - 10,  # Top left corner
             obstacle107_center[0] + 10, obstacle107_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle107 = [self.canvas_widget.coords(self.obstacle107)[0] + 3,
          self.canvas_widget.coords(self.obstacle107)[1] + 3,
@@ -1354,7 +1593,7 @@ class Environment(tk.Tk, object):
         self.obstacle108 = self.canvas_widget.create_rectangle(
             obstacle108_center[0] - 10, obstacle108_center[1] - 10,  # Top left corner
             obstacle108_center[0] + 10, obstacle108_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle108 = [self.canvas_widget.coords(self.obstacle108)[0] + 3,
          self.canvas_widget.coords(self.obstacle108)[1] + 3,
@@ -1368,7 +1607,7 @@ class Environment(tk.Tk, object):
         self.obstacle109 = self.canvas_widget.create_rectangle(
             obstacle109_center[0] - 10, obstacle109_center[1] - 10,  # Top left corner
             obstacle109_center[0] + 10, obstacle109_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle109 = [self.canvas_widget.coords(self.obstacle109)[0] + 3,
          self.canvas_widget.coords(self.obstacle109)[1] + 3,
@@ -1382,7 +1621,7 @@ class Environment(tk.Tk, object):
         self.obstacle110 = self.canvas_widget.create_rectangle(
             obstacle110_center[0] - 10, obstacle110_center[1] - 10,  # Top left corner
             obstacle110_center[0] + 10, obstacle110_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle110 = [self.canvas_widget.coords(self.obstacle110)[0] + 3,
          self.canvas_widget.coords(self.obstacle110)[1] + 3,
@@ -1396,7 +1635,7 @@ class Environment(tk.Tk, object):
         self.obstacle111 = self.canvas_widget.create_rectangle(
             obstacle111_center[0] - 10, obstacle111_center[1] - 10,  # Top left corner
             obstacle111_center[0] + 10, obstacle111_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle111 = [self.canvas_widget.coords(self.obstacle111)[0] + 3,
          self.canvas_widget.coords(self.obstacle111)[1] + 3,
@@ -1410,7 +1649,7 @@ class Environment(tk.Tk, object):
         self.obstacle112 = self.canvas_widget.create_rectangle(
             obstacle112_center[0] - 10, obstacle112_center[1] - 10,  # Top left corner
             obstacle112_center[0] + 10, obstacle112_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle112 = [self.canvas_widget.coords(self.obstacle112)[0] + 3,
          self.canvas_widget.coords(self.obstacle112)[1] + 3,
@@ -1424,7 +1663,7 @@ class Environment(tk.Tk, object):
         self.obstacle113 = self.canvas_widget.create_rectangle(
             obstacle113_center[0] - 10, obstacle113_center[1] - 10,  # Top left corner
             obstacle113_center[0] + 10, obstacle113_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle113 = [self.canvas_widget.coords(self.obstacle113)[0] + 3,
          self.canvas_widget.coords(self.obstacle113)[1] + 3,
@@ -1438,7 +1677,7 @@ class Environment(tk.Tk, object):
         self.obstacle114 = self.canvas_widget.create_rectangle(
             obstacle114_center[0] - 10, obstacle114_center[1] - 10,  # Top left corner
             obstacle114_center[0] + 10, obstacle114_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle114 = [self.canvas_widget.coords(self.obstacle114)[0] + 3,
          self.canvas_widget.coords(self.obstacle114)[1] + 3,
@@ -1452,7 +1691,7 @@ class Environment(tk.Tk, object):
         self.obstacle115 = self.canvas_widget.create_rectangle(
             obstacle115_center[0] - 10, obstacle115_center[1] - 10,  # Top left corner
             obstacle115_center[0] + 10, obstacle115_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle115 = [self.canvas_widget.coords(self.obstacle115)[0] + 3,
          self.canvas_widget.coords(self.obstacle115)[1] + 3,
@@ -1466,7 +1705,7 @@ class Environment(tk.Tk, object):
         self.obstacle116 = self.canvas_widget.create_rectangle(
             obstacle116_center[0] - 10, obstacle116_center[1] - 10,  # Top left corner
             obstacle116_center[0] + 10, obstacle116_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle116 = [self.canvas_widget.coords(self.obstacle116)[0] + 3,
          self.canvas_widget.coords(self.obstacle116)[1] + 3,
@@ -1480,7 +1719,7 @@ class Environment(tk.Tk, object):
         self.obstacle117 = self.canvas_widget.create_rectangle(
             obstacle117_center[0] - 10, obstacle117_center[1] - 10,  # Top left corner
             obstacle117_center[0] + 10, obstacle117_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle117 = [self.canvas_widget.coords(self.obstacle117)[0] + 3,
          self.canvas_widget.coords(self.obstacle117)[1] + 3,
@@ -1494,7 +1733,7 @@ class Environment(tk.Tk, object):
         self.obstacle118 = self.canvas_widget.create_rectangle(
             obstacle118_center[0] - 10, obstacle118_center[1] - 10,  # Top left corner
             obstacle118_center[0] + 10, obstacle118_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle118 = [self.canvas_widget.coords(self.obstacle118)[0] + 3,
          self.canvas_widget.coords(self.obstacle118)[1] + 3,
@@ -1508,7 +1747,7 @@ class Environment(tk.Tk, object):
         self.obstacle119 = self.canvas_widget.create_rectangle(
             obstacle119_center[0] - 10, obstacle119_center[1] - 10,  # Top left corner
             obstacle119_center[0] + 10, obstacle119_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle119 = [self.canvas_widget.coords(self.obstacle119)[0] + 3,
          self.canvas_widget.coords(self.obstacle119)[1] + 3,
@@ -1522,7 +1761,7 @@ class Environment(tk.Tk, object):
         self.obstacle120 = self.canvas_widget.create_rectangle(
             obstacle120_center[0] - 10, obstacle120_center[1] - 10,  # Top left corner
             obstacle120_center[0] + 10, obstacle120_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle120 = [self.canvas_widget.coords(self.obstacle120)[0] + 3,
          self.canvas_widget.coords(self.obstacle120)[1] + 3,
@@ -1536,7 +1775,7 @@ class Environment(tk.Tk, object):
         self.obstacle121 = self.canvas_widget.create_rectangle(
             obstacle121_center[0] - 10, obstacle121_center[1] - 10,  # Top left corner
             obstacle121_center[0] + 10, obstacle121_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle121 = [self.canvas_widget.coords(self.obstacle121)[0] + 3,
          self.canvas_widget.coords(self.obstacle121)[1] + 3,
@@ -1550,7 +1789,7 @@ class Environment(tk.Tk, object):
         self.obstacle122 = self.canvas_widget.create_rectangle(
             obstacle122_center[0] - 10, obstacle122_center[1] - 10,  # Top left corner
             obstacle122_center[0] + 10, obstacle122_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle122 = [self.canvas_widget.coords(self.obstacle122)[0] + 3,
          self.canvas_widget.coords(self.obstacle122)[1] + 3,
@@ -1564,7 +1803,7 @@ class Environment(tk.Tk, object):
         self.obstacle123 = self.canvas_widget.create_rectangle(
             obstacle123_center[0] - 10, obstacle123_center[1] - 10,  # Top left corner
             obstacle123_center[0] + 10, obstacle123_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle123 = [self.canvas_widget.coords(self.obstacle123)[0] + 3,
          self.canvas_widget.coords(self.obstacle123)[1] + 3,
@@ -1578,7 +1817,7 @@ class Environment(tk.Tk, object):
         self.obstacle124 = self.canvas_widget.create_rectangle(
             obstacle124_center[0] - 10, obstacle124_center[1] - 10,  # Top left corner
             obstacle124_center[0] + 10, obstacle124_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle124 = [self.canvas_widget.coords(self.obstacle124)[0] + 3,
          self.canvas_widget.coords(self.obstacle124)[1] + 3,
@@ -1592,7 +1831,7 @@ class Environment(tk.Tk, object):
         self.obstacle125 = self.canvas_widget.create_rectangle(
             obstacle125_center[0] - 10, obstacle125_center[1] - 10,  # Top left corner
             obstacle125_center[0] + 10, obstacle125_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle125 = [self.canvas_widget.coords(self.obstacle125)[0] + 3,
          self.canvas_widget.coords(self.obstacle125)[1] + 3,
@@ -1606,7 +1845,7 @@ class Environment(tk.Tk, object):
         self.obstacle126 = self.canvas_widget.create_rectangle(
             obstacle126_center[0] - 10, obstacle126_center[1] - 10,  # Top left corner
             obstacle126_center[0] + 10, obstacle126_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle126 = [self.canvas_widget.coords(self.obstacle126)[0] + 3,
          self.canvas_widget.coords(self.obstacle126)[1] + 3,
@@ -1620,7 +1859,7 @@ class Environment(tk.Tk, object):
         self.obstacle127 = self.canvas_widget.create_rectangle(
             obstacle127_center[0] - 10, obstacle127_center[1] - 10,  # Top left corner
             obstacle127_center[0] + 10, obstacle127_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle127 = [self.canvas_widget.coords(self.obstacle127)[0] + 3,
          self.canvas_widget.coords(self.obstacle127)[1] + 3,
@@ -1634,7 +1873,7 @@ class Environment(tk.Tk, object):
         self.obstacle128 = self.canvas_widget.create_rectangle(
             obstacle128_center[0] - 10, obstacle128_center[1] - 10,  # Top left corner
             obstacle128_center[0] + 10, obstacle128_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle128 = [self.canvas_widget.coords(self.obstacle128)[0] + 3,
          self.canvas_widget.coords(self.obstacle128)[1] + 3,
@@ -1648,7 +1887,7 @@ class Environment(tk.Tk, object):
         self.obstacle129 = self.canvas_widget.create_rectangle(
             obstacle129_center[0] - 10, obstacle129_center[1] - 10,  # Top left corner
             obstacle129_center[0] + 10, obstacle129_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle129 = [self.canvas_widget.coords(self.obstacle129)[0] + 3,
          self.canvas_widget.coords(self.obstacle129)[1] + 3,
@@ -1662,7 +1901,7 @@ class Environment(tk.Tk, object):
         self.obstacle130 = self.canvas_widget.create_rectangle(
             obstacle130_center[0] - 10, obstacle130_center[1] - 10,  # Top left corner
             obstacle130_center[0] + 10, obstacle130_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle130 = [self.canvas_widget.coords(self.obstacle130)[0] + 3,
          self.canvas_widget.coords(self.obstacle130)[1] + 3,
@@ -1676,7 +1915,7 @@ class Environment(tk.Tk, object):
         self.obstacle131 = self.canvas_widget.create_rectangle(
             obstacle131_center[0] - 10, obstacle131_center[1] - 10,  # Top left corner
             obstacle131_center[0] + 10, obstacle131_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle131 = [self.canvas_widget.coords(self.obstacle131)[0] + 3,
          self.canvas_widget.coords(self.obstacle131)[1] + 3,
@@ -1690,7 +1929,7 @@ class Environment(tk.Tk, object):
         self.obstacle132 = self.canvas_widget.create_rectangle(
             obstacle132_center[0] - 10, obstacle132_center[1] - 10,  # Top left corner
             obstacle132_center[0] + 10, obstacle132_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle132 = [self.canvas_widget.coords(self.obstacle132)[0] + 3,
          self.canvas_widget.coords(self.obstacle132)[1] + 3,
@@ -1704,7 +1943,7 @@ class Environment(tk.Tk, object):
         self.obstacle133 = self.canvas_widget.create_rectangle(
             obstacle133_center[0] - 10, obstacle133_center[1] - 10,  # Top left corner
             obstacle133_center[0] + 10, obstacle133_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle133 = [self.canvas_widget.coords(self.obstacle133)[0] + 3,
          self.canvas_widget.coords(self.obstacle133)[1] + 3,
@@ -1718,7 +1957,7 @@ class Environment(tk.Tk, object):
         self.obstacle134 = self.canvas_widget.create_rectangle(
             obstacle134_center[0] - 10, obstacle134_center[1] - 10,  # Top left corner
             obstacle134_center[0] + 10, obstacle134_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle134 = [self.canvas_widget.coords(self.obstacle134)[0] + 3,
          self.canvas_widget.coords(self.obstacle134)[1] + 3,
@@ -1732,7 +1971,7 @@ class Environment(tk.Tk, object):
         self.obstacle135 = self.canvas_widget.create_rectangle(
             obstacle135_center[0] - 10, obstacle135_center[1] - 10,  # Top left corner
             obstacle135_center[0] + 10, obstacle135_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle135 = [self.canvas_widget.coords(self.obstacle135)[0] + 3,
          self.canvas_widget.coords(self.obstacle135)[1] + 3,
@@ -1746,7 +1985,7 @@ class Environment(tk.Tk, object):
         self.obstacle136 = self.canvas_widget.create_rectangle(
             obstacle136_center[0] - 10, obstacle136_center[1] - 10,  # Top left corner
             obstacle136_center[0] + 10, obstacle136_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle136 = [self.canvas_widget.coords(self.obstacle136)[0] + 3,
          self.canvas_widget.coords(self.obstacle136)[1] + 3,
@@ -1760,7 +1999,7 @@ class Environment(tk.Tk, object):
         self.obstacle137 = self.canvas_widget.create_rectangle(
             obstacle137_center[0] - 10, obstacle137_center[1] - 10,  # Top left corner
             obstacle137_center[0] + 10, obstacle137_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle137 = [self.canvas_widget.coords(self.obstacle137)[0] + 3,
          self.canvas_widget.coords(self.obstacle137)[1] + 3,
@@ -1774,7 +2013,7 @@ class Environment(tk.Tk, object):
         self.obstacle138 = self.canvas_widget.create_rectangle(
             obstacle138_center[0] - 10, obstacle138_center[1] - 10,  # Top left corner
             obstacle138_center[0] + 10, obstacle138_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle138 = [self.canvas_widget.coords(self.obstacle138)[0] + 3,
          self.canvas_widget.coords(self.obstacle138)[1] + 3,
@@ -1788,7 +2027,7 @@ class Environment(tk.Tk, object):
         self.obstacle139 = self.canvas_widget.create_rectangle(
             obstacle139_center[0] - 10, obstacle139_center[1] - 10,  # Top left corner
             obstacle139_center[0] + 10, obstacle139_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle139 = [self.canvas_widget.coords(self.obstacle139)[0] + 3,
          self.canvas_widget.coords(self.obstacle139)[1] + 3,
@@ -1802,7 +2041,7 @@ class Environment(tk.Tk, object):
         self.obstacle140 = self.canvas_widget.create_rectangle(
             obstacle140_center[0] - 10, obstacle140_center[1] - 10,  # Top left corner
             obstacle140_center[0] + 10, obstacle140_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle140 = [self.canvas_widget.coords(self.obstacle140)[0] + 3,
          self.canvas_widget.coords(self.obstacle140)[1] + 3,
@@ -1816,7 +2055,7 @@ class Environment(tk.Tk, object):
         self.obstacle141 = self.canvas_widget.create_rectangle(
             obstacle141_center[0] - 10, obstacle141_center[1] - 10,  # Top left corner
             obstacle141_center[0] + 10, obstacle141_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle141 = [self.canvas_widget.coords(self.obstacle141)[0] + 3,
          self.canvas_widget.coords(self.obstacle141)[1] + 3,
@@ -1830,7 +2069,7 @@ class Environment(tk.Tk, object):
         self.obstacle142 = self.canvas_widget.create_rectangle(
             obstacle142_center[0] - 10, obstacle142_center[1] - 10,  # Top left corner
             obstacle142_center[0] + 10, obstacle142_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle142 = [self.canvas_widget.coords(self.obstacle142)[0] + 3,
          self.canvas_widget.coords(self.obstacle142)[1] + 3,
@@ -1844,7 +2083,7 @@ class Environment(tk.Tk, object):
         self.obstacle143 = self.canvas_widget.create_rectangle(
             obstacle143_center[0] - 10, obstacle143_center[1] - 10,  # Top left corner
             obstacle143_center[0] + 10, obstacle143_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle143 = [self.canvas_widget.coords(self.obstacle143)[0] + 3,
          self.canvas_widget.coords(self.obstacle143)[1] + 3,
@@ -1858,7 +2097,7 @@ class Environment(tk.Tk, object):
         self.obstacle144 = self.canvas_widget.create_rectangle(
             obstacle144_center[0] - 10, obstacle144_center[1] - 10,  # Top left corner
             obstacle144_center[0] + 10, obstacle144_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle144 = [self.canvas_widget.coords(self.obstacle144)[0] + 3,
          self.canvas_widget.coords(self.obstacle144)[1] + 3,
@@ -1872,7 +2111,7 @@ class Environment(tk.Tk, object):
         self.obstacle145 = self.canvas_widget.create_rectangle(
             obstacle145_center[0] - 10, obstacle145_center[1] - 10,  # Top left corner
             obstacle145_center[0] + 10, obstacle145_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle145 = [self.canvas_widget.coords(self.obstacle145)[0] + 3,
          self.canvas_widget.coords(self.obstacle145)[1] + 3,
@@ -1886,7 +2125,7 @@ class Environment(tk.Tk, object):
         self.obstacle146 = self.canvas_widget.create_rectangle(
             obstacle146_center[0] - 10, obstacle146_center[1] - 10,  # Top left corner
             obstacle146_center[0] + 10, obstacle146_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle146 = [self.canvas_widget.coords(self.obstacle146)[0] + 3,
          self.canvas_widget.coords(self.obstacle146)[1] + 3,
@@ -1900,7 +2139,7 @@ class Environment(tk.Tk, object):
         self.obstacle147 = self.canvas_widget.create_rectangle(
             obstacle147_center[0] - 10, obstacle147_center[1] - 10,  # Top left corner
             obstacle147_center[0] + 10, obstacle147_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle147 = [self.canvas_widget.coords(self.obstacle147)[0] + 3,
          self.canvas_widget.coords(self.obstacle147)[1] + 3,
@@ -1914,7 +2153,7 @@ class Environment(tk.Tk, object):
         self.obstacle148 = self.canvas_widget.create_rectangle(
             obstacle148_center[0] - 10, obstacle148_center[1] - 10,  # Top left corner
             obstacle148_center[0] + 10, obstacle148_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle148 = [self.canvas_widget.coords(self.obstacle148)[0] + 3,
          self.canvas_widget.coords(self.obstacle148)[1] + 3,
@@ -1928,7 +2167,7 @@ class Environment(tk.Tk, object):
         self.obstacle149 = self.canvas_widget.create_rectangle(
             obstacle149_center[0] - 10, obstacle149_center[1] - 10,  # Top left corner
             obstacle149_center[0] + 10, obstacle149_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle149 = [self.canvas_widget.coords(self.obstacle149)[0] + 3,
          self.canvas_widget.coords(self.obstacle149)[1] + 3,
@@ -1942,7 +2181,7 @@ class Environment(tk.Tk, object):
         self.obstacle150 = self.canvas_widget.create_rectangle(
             obstacle150_center[0] - 10, obstacle150_center[1] - 10,  # Top left corner
             obstacle150_center[0] + 10, obstacle150_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle150 = [self.canvas_widget.coords(self.obstacle150)[0] + 3,
          self.canvas_widget.coords(self.obstacle150)[1] + 3,
@@ -1956,7 +2195,7 @@ class Environment(tk.Tk, object):
         self.obstacle151 = self.canvas_widget.create_rectangle(
             obstacle151_center[0] - 10, obstacle151_center[1] - 10,  # Top left corner
             obstacle151_center[0] + 10, obstacle151_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle151 = [self.canvas_widget.coords(self.obstacle151)[0] + 3,
          self.canvas_widget.coords(self.obstacle151)[1] + 3,
@@ -1970,7 +2209,7 @@ class Environment(tk.Tk, object):
         self.obstacle152 = self.canvas_widget.create_rectangle(
             obstacle152_center[0] - 10, obstacle152_center[1] - 10,  # Top left corner
             obstacle152_center[0] + 10, obstacle152_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle152 = [self.canvas_widget.coords(self.obstacle152)[0] + 3,
          self.canvas_widget.coords(self.obstacle152)[1] + 3,
@@ -1984,7 +2223,7 @@ class Environment(tk.Tk, object):
         self.obstacle153 = self.canvas_widget.create_rectangle(
             obstacle153_center[0] - 10, obstacle153_center[1] - 10,  # Top left corner
             obstacle153_center[0] + 10, obstacle153_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle153 = [self.canvas_widget.coords(self.obstacle153)[0] + 3,
          self.canvas_widget.coords(self.obstacle153)[1] + 3,
@@ -1998,7 +2237,7 @@ class Environment(tk.Tk, object):
         self.obstacle154 = self.canvas_widget.create_rectangle(
             obstacle154_center[0] - 10, obstacle154_center[1] - 10,  # Top left corner
             obstacle154_center[0] + 10, obstacle154_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle154 = [self.canvas_widget.coords(self.obstacle154)[0] + 3,
          self.canvas_widget.coords(self.obstacle154)[1] + 3,
@@ -2012,7 +2251,7 @@ class Environment(tk.Tk, object):
         self.obstacle155 = self.canvas_widget.create_rectangle(
             obstacle155_center[0] - 10, obstacle155_center[1] - 10,  # Top left corner
             obstacle155_center[0] + 10, obstacle155_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle155 = [self.canvas_widget.coords(self.obstacle155)[0] + 3,
          self.canvas_widget.coords(self.obstacle155)[1] + 3,
@@ -2026,7 +2265,7 @@ class Environment(tk.Tk, object):
         self.obstacle156 = self.canvas_widget.create_rectangle(
             obstacle156_center[0] - 10, obstacle156_center[1] - 10,  # Top left corner
             obstacle156_center[0] + 10, obstacle156_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle156 = [self.canvas_widget.coords(self.obstacle156)[0] + 3,
          self.canvas_widget.coords(self.obstacle156)[1] + 3,
@@ -2040,7 +2279,7 @@ class Environment(tk.Tk, object):
         self.obstacle157 = self.canvas_widget.create_rectangle(
             obstacle157_center[0] - 10, obstacle157_center[1] - 10,  # Top left corner
             obstacle157_center[0] + 10, obstacle157_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle157 = [self.canvas_widget.coords(self.obstacle157)[0] + 3,
          self.canvas_widget.coords(self.obstacle157)[1] + 3,
@@ -2054,7 +2293,7 @@ class Environment(tk.Tk, object):
         self.obstacle158 = self.canvas_widget.create_rectangle(
             obstacle158_center[0] - 10, obstacle158_center[1] - 10,  # Top left corner
             obstacle158_center[0] + 10, obstacle158_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle158 = [self.canvas_widget.coords(self.obstacle158)[0] + 3,
          self.canvas_widget.coords(self.obstacle158)[1] + 3,
@@ -2068,7 +2307,7 @@ class Environment(tk.Tk, object):
         self.obstacle159 = self.canvas_widget.create_rectangle(
             obstacle159_center[0] - 10, obstacle159_center[1] - 10,  # Top left corner
             obstacle159_center[0] + 10, obstacle159_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle159 = [self.canvas_widget.coords(self.obstacle159)[0] + 3,
          self.canvas_widget.coords(self.obstacle159)[1] + 3,
@@ -2082,7 +2321,7 @@ class Environment(tk.Tk, object):
         self.obstacle160 = self.canvas_widget.create_rectangle(
             obstacle160_center[0] - 10, obstacle160_center[1] - 10,  # Top left corner
             obstacle160_center[0] + 10, obstacle160_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle160 = [self.canvas_widget.coords(self.obstacle160)[0] + 3,
          self.canvas_widget.coords(self.obstacle160)[1] + 3,
@@ -2096,7 +2335,7 @@ class Environment(tk.Tk, object):
         self.obstacle161 = self.canvas_widget.create_rectangle(
             obstacle161_center[0] - 10, obstacle161_center[1] - 10,  # Top left corner
             obstacle161_center[0] + 10, obstacle161_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle161 = [self.canvas_widget.coords(self.obstacle161)[0] + 3,
          self.canvas_widget.coords(self.obstacle161)[1] + 3,
@@ -2110,7 +2349,7 @@ class Environment(tk.Tk, object):
         self.obstacle162 = self.canvas_widget.create_rectangle(
             obstacle162_center[0] - 10, obstacle162_center[1] - 10,  # Top left corner
             obstacle162_center[0] + 10, obstacle162_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle162 = [self.canvas_widget.coords(self.obstacle162)[0] + 3,
          self.canvas_widget.coords(self.obstacle162)[1] + 3,
@@ -2124,7 +2363,7 @@ class Environment(tk.Tk, object):
         self.obstacle163 = self.canvas_widget.create_rectangle(
             obstacle163_center[0] - 10, obstacle163_center[1] - 10,  # Top left corner
             obstacle163_center[0] + 10, obstacle163_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle163 = [self.canvas_widget.coords(self.obstacle163)[0] + 3,
          self.canvas_widget.coords(self.obstacle163)[1] + 3,
@@ -2138,7 +2377,7 @@ class Environment(tk.Tk, object):
         self.obstacle164 = self.canvas_widget.create_rectangle(
             obstacle164_center[0] - 10, obstacle164_center[1] - 10,  # Top left corner
             obstacle164_center[0] + 10, obstacle164_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle164 = [self.canvas_widget.coords(self.obstacle164)[0] + 3,
          self.canvas_widget.coords(self.obstacle164)[1] + 3,
@@ -2152,7 +2391,7 @@ class Environment(tk.Tk, object):
         self.obstacle165 = self.canvas_widget.create_rectangle(
             obstacle165_center[0] - 10, obstacle165_center[1] - 10,  # Top left corner
             obstacle165_center[0] + 10, obstacle165_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle165 = [self.canvas_widget.coords(self.obstacle165)[0] + 3,
          self.canvas_widget.coords(self.obstacle165)[1] + 3,
@@ -2166,7 +2405,7 @@ class Environment(tk.Tk, object):
         self.obstacle166 = self.canvas_widget.create_rectangle(
             obstacle166_center[0] - 10, obstacle166_center[1] - 10,  # Top left corner
             obstacle166_center[0] + 10, obstacle166_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle166 = [self.canvas_widget.coords(self.obstacle166)[0] + 3,
          self.canvas_widget.coords(self.obstacle166)[1] + 3,
@@ -2180,7 +2419,7 @@ class Environment(tk.Tk, object):
         self.obstacle167 = self.canvas_widget.create_rectangle(
             obstacle167_center[0] - 10, obstacle167_center[1] - 10,  # Top left corner
             obstacle167_center[0] + 10, obstacle167_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle167 = [self.canvas_widget.coords(self.obstacle167)[0] + 3,
          self.canvas_widget.coords(self.obstacle167)[1] + 3,
@@ -2194,7 +2433,7 @@ class Environment(tk.Tk, object):
         self.obstacle168 = self.canvas_widget.create_rectangle(
             obstacle168_center[0] - 10, obstacle168_center[1] - 10,  # Top left corner
             obstacle168_center[0] + 10, obstacle168_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle168 = [self.canvas_widget.coords(self.obstacle168)[0] + 3,
          self.canvas_widget.coords(self.obstacle168)[1] + 3,
@@ -2208,7 +2447,7 @@ class Environment(tk.Tk, object):
         self.obstacle169 = self.canvas_widget.create_rectangle(
             obstacle169_center[0] - 10, obstacle169_center[1] - 10,  # Top left corner
             obstacle169_center[0] + 10, obstacle169_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle169 = [self.canvas_widget.coords(self.obstacle169)[0] + 3,
          self.canvas_widget.coords(self.obstacle169)[1] + 3,
@@ -2222,7 +2461,7 @@ class Environment(tk.Tk, object):
         self.obstacle170 = self.canvas_widget.create_rectangle(
             obstacle170_center[0] - 10, obstacle170_center[1] - 10,  # Top left corner
             obstacle170_center[0] + 10, obstacle170_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle170 = [self.canvas_widget.coords(self.obstacle170)[0] + 3,
          self.canvas_widget.coords(self.obstacle170)[1] + 3,
@@ -2236,7 +2475,7 @@ class Environment(tk.Tk, object):
         self.obstacle171 = self.canvas_widget.create_rectangle(
             obstacle171_center[0] - 10, obstacle171_center[1] - 10,  # Top left corner
             obstacle171_center[0] + 10, obstacle171_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle171 = [self.canvas_widget.coords(self.obstacle171)[0] + 3,
          self.canvas_widget.coords(self.obstacle171)[1] + 3,
@@ -2250,7 +2489,7 @@ class Environment(tk.Tk, object):
         self.obstacle172 = self.canvas_widget.create_rectangle(
             obstacle172_center[0] - 10, obstacle172_center[1] - 10,  # Top left corner
             obstacle172_center[0] + 10, obstacle172_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle172 = [self.canvas_widget.coords(self.obstacle172)[0] + 3,
          self.canvas_widget.coords(self.obstacle172)[1] + 3,
@@ -2264,7 +2503,7 @@ class Environment(tk.Tk, object):
         self.obstacle173 = self.canvas_widget.create_rectangle(
             obstacle173_center[0] - 10, obstacle173_center[1] - 10,  # Top left corner
             obstacle173_center[0] + 10, obstacle173_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle173 = [self.canvas_widget.coords(self.obstacle173)[0] + 3,
          self.canvas_widget.coords(self.obstacle173)[1] + 3,
@@ -2278,7 +2517,7 @@ class Environment(tk.Tk, object):
         self.obstacle174 = self.canvas_widget.create_rectangle(
             obstacle174_center[0] - 10, obstacle174_center[1] - 10,  # Top left corner
             obstacle174_center[0] + 10, obstacle174_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle174 = [self.canvas_widget.coords(self.obstacle174)[0] + 3,
          self.canvas_widget.coords(self.obstacle174)[1] + 3,
@@ -2292,7 +2531,7 @@ class Environment(tk.Tk, object):
         self.obstacle175 = self.canvas_widget.create_rectangle(
             obstacle175_center[0] - 10, obstacle175_center[1] - 10,  # Top left corner
             obstacle175_center[0] + 10, obstacle175_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle175 = [self.canvas_widget.coords(self.obstacle175)[0] + 3,
          self.canvas_widget.coords(self.obstacle175)[1] + 3,
@@ -2306,7 +2545,7 @@ class Environment(tk.Tk, object):
         self.obstacle176 = self.canvas_widget.create_rectangle(
             obstacle176_center[0] - 10, obstacle176_center[1] - 10,  # Top left corner
             obstacle176_center[0] + 10, obstacle176_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle176 = [self.canvas_widget.coords(self.obstacle176)[0] + 3,
          self.canvas_widget.coords(self.obstacle176)[1] + 3,
@@ -2320,7 +2559,7 @@ class Environment(tk.Tk, object):
         self.obstacle177 = self.canvas_widget.create_rectangle(
             obstacle177_center[0] - 10, obstacle177_center[1] - 10,  # Top left corner
             obstacle177_center[0] + 10, obstacle177_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle177 = [self.canvas_widget.coords(self.obstacle177)[0] + 3,
          self.canvas_widget.coords(self.obstacle177)[1] + 3,
@@ -2334,7 +2573,7 @@ class Environment(tk.Tk, object):
         self.obstacle178 = self.canvas_widget.create_rectangle(
             obstacle178_center[0] - 10, obstacle178_center[1] - 10,  # Top left corner
             obstacle178_center[0] + 10, obstacle178_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle178 = [self.canvas_widget.coords(self.obstacle178)[0] + 3,
          self.canvas_widget.coords(self.obstacle178)[1] + 3,
@@ -2348,7 +2587,7 @@ class Environment(tk.Tk, object):
         self.obstacle179 = self.canvas_widget.create_rectangle(
             obstacle179_center[0] - 10, obstacle179_center[1] - 10,  # Top left corner
             obstacle179_center[0] + 10, obstacle179_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle179 = [self.canvas_widget.coords(self.obstacle179)[0] + 3,
          self.canvas_widget.coords(self.obstacle179)[1] + 3,
@@ -2362,7 +2601,7 @@ class Environment(tk.Tk, object):
         self.obstacle180 = self.canvas_widget.create_rectangle(
             obstacle180_center[0] - 10, obstacle180_center[1] - 10,  # Top left corner
             obstacle180_center[0] + 10, obstacle180_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle180 = [self.canvas_widget.coords(self.obstacle180)[0] + 3,
          self.canvas_widget.coords(self.obstacle180)[1] + 3,
@@ -2376,7 +2615,7 @@ class Environment(tk.Tk, object):
         self.obstacle181 = self.canvas_widget.create_rectangle(
             obstacle181_center[0] - 10, obstacle181_center[1] - 10,  # Top left corner
             obstacle181_center[0] + 10, obstacle181_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle181 = [self.canvas_widget.coords(self.obstacle181)[0] + 3,
          self.canvas_widget.coords(self.obstacle181)[1] + 3,
@@ -2390,7 +2629,7 @@ class Environment(tk.Tk, object):
         self.obstacle182 = self.canvas_widget.create_rectangle(
             obstacle182_center[0] - 10, obstacle182_center[1] - 10,  # Top left corner
             obstacle182_center[0] + 10, obstacle182_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle182 = [self.canvas_widget.coords(self.obstacle182)[0] + 3,
          self.canvas_widget.coords(self.obstacle182)[1] + 3,
@@ -2404,7 +2643,7 @@ class Environment(tk.Tk, object):
         self.obstacle183 = self.canvas_widget.create_rectangle(
             obstacle183_center[0] - 10, obstacle183_center[1] - 10,  # Top left corner
             obstacle183_center[0] + 10, obstacle183_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle183 = [self.canvas_widget.coords(self.obstacle183)[0] + 3,
          self.canvas_widget.coords(self.obstacle183)[1] + 3,
@@ -2418,7 +2657,7 @@ class Environment(tk.Tk, object):
         self.obstacle184 = self.canvas_widget.create_rectangle(
             obstacle184_center[0] - 10, obstacle184_center[1] - 10,  # Top left corner
             obstacle184_center[0] + 10, obstacle184_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle184 = [self.canvas_widget.coords(self.obstacle184)[0] + 3,
          self.canvas_widget.coords(self.obstacle184)[1] + 3,
@@ -2432,7 +2671,7 @@ class Environment(tk.Tk, object):
         self.obstacle185 = self.canvas_widget.create_rectangle(
             obstacle185_center[0] - 10, obstacle185_center[1] - 10,  # Top left corner
             obstacle185_center[0] + 10, obstacle185_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle185 = [self.canvas_widget.coords(self.obstacle185)[0] + 3,
          self.canvas_widget.coords(self.obstacle185)[1] + 3,
@@ -2446,7 +2685,7 @@ class Environment(tk.Tk, object):
         self.obstacle186 = self.canvas_widget.create_rectangle(
             obstacle186_center[0] - 10, obstacle186_center[1] - 10,  # Top left corner
             obstacle186_center[0] + 10, obstacle186_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle186 = [self.canvas_widget.coords(self.obstacle186)[0] + 3,
          self.canvas_widget.coords(self.obstacle186)[1] + 3,
@@ -2460,7 +2699,7 @@ class Environment(tk.Tk, object):
         self.obstacle187 = self.canvas_widget.create_rectangle(
             obstacle187_center[0] - 10, obstacle187_center[1] - 10,  # Top left corner
             obstacle187_center[0] + 10, obstacle187_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle187 = [self.canvas_widget.coords(self.obstacle187)[0] + 3,
          self.canvas_widget.coords(self.obstacle187)[1] + 3,
@@ -2474,7 +2713,7 @@ class Environment(tk.Tk, object):
         self.obstacle188 = self.canvas_widget.create_rectangle(
             obstacle188_center[0] - 10, obstacle188_center[1] - 10,  # Top left corner
             obstacle188_center[0] + 10, obstacle188_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle188 = [self.canvas_widget.coords(self.obstacle188)[0] + 3,
          self.canvas_widget.coords(self.obstacle188)[1] + 3,
@@ -2488,7 +2727,7 @@ class Environment(tk.Tk, object):
         self.obstacle188 = self.canvas_widget.create_rectangle(
             obstacle188_center[0] - 10, obstacle188_center[1] - 10,  # Top left corner
             obstacle188_center[0] + 10, obstacle188_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle188 = [self.canvas_widget.coords(self.obstacle188)[0] + 3,
          self.canvas_widget.coords(self.obstacle188)[1] + 3,
@@ -2502,7 +2741,7 @@ class Environment(tk.Tk, object):
         self.obstacle189 = self.canvas_widget.create_rectangle(
             obstacle189_center[0] - 10, obstacle189_center[1] - 10,  # Top left corner
             obstacle189_center[0] + 10, obstacle189_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle189 = [self.canvas_widget.coords(self.obstacle189)[0] + 3,
          self.canvas_widget.coords(self.obstacle189)[1] + 3,
@@ -2516,7 +2755,7 @@ class Environment(tk.Tk, object):
         self.obstacle190 = self.canvas_widget.create_rectangle(
             obstacle190_center[0] - 10, obstacle190_center[1] - 10,  # Top left corner
             obstacle190_center[0] + 10, obstacle190_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle190 = [self.canvas_widget.coords(self.obstacle190)[0] + 3,
          self.canvas_widget.coords(self.obstacle190)[1] + 3,
@@ -2530,7 +2769,7 @@ class Environment(tk.Tk, object):
         self.obstacle191 = self.canvas_widget.create_rectangle(
             obstacle191_center[0] - 10, obstacle191_center[1] - 10,  # Top left corner
             obstacle191_center[0] + 10, obstacle191_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle191 = [self.canvas_widget.coords(self.obstacle191)[0] + 3,
          self.canvas_widget.coords(self.obstacle191)[1] + 3,
@@ -2544,7 +2783,7 @@ class Environment(tk.Tk, object):
         self.obstacle192 = self.canvas_widget.create_rectangle(
             obstacle192_center[0] - 10, obstacle192_center[1] - 10,  # Top left corner
             obstacle192_center[0] + 10, obstacle192_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle192 = [self.canvas_widget.coords(self.obstacle192)[0] + 3,
          self.canvas_widget.coords(self.obstacle192)[1] + 3,
@@ -2558,7 +2797,7 @@ class Environment(tk.Tk, object):
         self.obstacle193 = self.canvas_widget.create_rectangle(
             obstacle193_center[0] - 10, obstacle193_center[1] - 10,  # Top left corner
             obstacle193_center[0] + 10, obstacle193_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle193 = [self.canvas_widget.coords(self.obstacle193)[0] + 3,
          self.canvas_widget.coords(self.obstacle193)[1] + 3,
@@ -2572,7 +2811,7 @@ class Environment(tk.Tk, object):
         self.obstacle194 = self.canvas_widget.create_rectangle(
             obstacle194_center[0] - 10, obstacle194_center[1] - 10,  # Top left corner
             obstacle194_center[0] + 10, obstacle194_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle194 = [self.canvas_widget.coords(self.obstacle194)[0] + 3,
          self.canvas_widget.coords(self.obstacle194)[1] + 3,
@@ -2586,7 +2825,7 @@ class Environment(tk.Tk, object):
         self.obstacle195 = self.canvas_widget.create_rectangle(
             obstacle195_center[0] - 10, obstacle195_center[1] - 10,  # Top left corner
             obstacle195_center[0] + 10, obstacle195_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle195 = [self.canvas_widget.coords(self.obstacle195)[0] + 3,
          self.canvas_widget.coords(self.obstacle195)[1] + 3,
@@ -2600,7 +2839,7 @@ class Environment(tk.Tk, object):
         self.obstacle196 = self.canvas_widget.create_rectangle(
             obstacle196_center[0] - 10, obstacle196_center[1] - 10,  # Top left corner
             obstacle196_center[0] + 10, obstacle196_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle196 = [self.canvas_widget.coords(self.obstacle196)[0] + 3,
          self.canvas_widget.coords(self.obstacle196)[1] + 3,
@@ -2614,7 +2853,7 @@ class Environment(tk.Tk, object):
         self.obstacle197 = self.canvas_widget.create_rectangle(
             obstacle197_center[0] - 10, obstacle197_center[1] - 10,  # Top left corner
             obstacle197_center[0] + 10, obstacle197_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle197 = [self.canvas_widget.coords(self.obstacle197)[0] + 3,
          self.canvas_widget.coords(self.obstacle197)[1] + 3,
@@ -2628,7 +2867,7 @@ class Environment(tk.Tk, object):
         self.obstacle198 = self.canvas_widget.create_rectangle(
             obstacle198_center[0] - 10, obstacle198_center[1] - 10,  # Top left corner
             obstacle198_center[0] + 10, obstacle198_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle198 = [self.canvas_widget.coords(self.obstacle198)[0] + 3,
          self.canvas_widget.coords(self.obstacle198)[1] + 3,
@@ -2642,7 +2881,7 @@ class Environment(tk.Tk, object):
         self.obstacle199 = self.canvas_widget.create_rectangle(
             obstacle199_center[0] - 10, obstacle199_center[1] - 10,  # Top left corner
             obstacle199_center[0] + 10, obstacle199_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle199 = [self.canvas_widget.coords(self.obstacle199)[0] + 3,
          self.canvas_widget.coords(self.obstacle199)[1] + 3,
@@ -2656,7 +2895,7 @@ class Environment(tk.Tk, object):
         self.obstacle200 = self.canvas_widget.create_rectangle(
             obstacle200_center[0] - 10, obstacle200_center[1] - 10,  # Top left corner
             obstacle200_center[0] + 10, obstacle200_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle200 = [self.canvas_widget.coords(self.obstacle200)[0] + 3,
          self.canvas_widget.coords(self.obstacle200)[1] + 3,
@@ -2670,7 +2909,7 @@ class Environment(tk.Tk, object):
         self.obstacle201 = self.canvas_widget.create_rectangle(
             obstacle201_center[0] - 10, obstacle201_center[1] - 10,  # Top left corner
             obstacle201_center[0] + 10, obstacle201_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle201 = [self.canvas_widget.coords(self.obstacle201)[0] + 3,
          self.canvas_widget.coords(self.obstacle201)[1] + 3,
@@ -2684,7 +2923,7 @@ class Environment(tk.Tk, object):
         self.obstacle202 = self.canvas_widget.create_rectangle(
             obstacle202_center[0] - 10, obstacle202_center[1] - 10,  # Top left corner
             obstacle202_center[0] + 10, obstacle202_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle202 = [self.canvas_widget.coords(self.obstacle202)[0] + 3,
          self.canvas_widget.coords(self.obstacle202)[1] + 3,
@@ -2698,7 +2937,7 @@ class Environment(tk.Tk, object):
         self.obstacle203 = self.canvas_widget.create_rectangle(
             obstacle203_center[0] - 10, obstacle203_center[1] - 10,  # Top left corner
             obstacle203_center[0] + 10, obstacle203_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle203 = [self.canvas_widget.coords(self.obstacle203)[0] + 3,
          self.canvas_widget.coords(self.obstacle203)[1] + 3,
@@ -2712,7 +2951,7 @@ class Environment(tk.Tk, object):
         self.obstacle204 = self.canvas_widget.create_rectangle(
             obstacle204_center[0] - 10, obstacle204_center[1] - 10,  # Top left corner
             obstacle204_center[0] + 10, obstacle204_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle204 = [self.canvas_widget.coords(self.obstacle204)[0] + 3,
          self.canvas_widget.coords(self.obstacle204)[1] + 3,
@@ -2726,7 +2965,7 @@ class Environment(tk.Tk, object):
         self.obstacle205 = self.canvas_widget.create_rectangle(
             obstacle205_center[0] - 10, obstacle205_center[1] - 10,  # Top left corner
             obstacle205_center[0] + 10, obstacle205_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle205 = [self.canvas_widget.coords(self.obstacle205)[0] + 3,
          self.canvas_widget.coords(self.obstacle205)[1] + 3,
@@ -2739,7 +2978,7 @@ class Environment(tk.Tk, object):
         self.obstacle206 = self.canvas_widget.create_rectangle(
             obstacle206_center[0] - 10, obstacle206_center[1] - 10,  # Top left corner
             obstacle206_center[0] + 10, obstacle206_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#000000')
+            outline='black', fill='blue')
         
         self.coords_obstacle206 = [self.canvas_widget.coords(self.obstacle206)[0] + 3,
          self.canvas_widget.coords(self.obstacle206)[1] + 3,
@@ -2752,7 +2991,7 @@ class Environment(tk.Tk, object):
         self.obstacle207 = self.canvas_widget.create_rectangle(
             obstacle207_center[0] - 10, obstacle207_center[1] - 10,  # Top left corner
             obstacle207_center[0] + 10, obstacle207_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='#00BFFF')
+            outline='black', fill='blue')
         
         self.coords_obstacle207 = [self.canvas_widget.coords(self.obstacle207)[0] + 3,
          self.canvas_widget.coords(self.obstacle207)[1] + 3,
@@ -2773,7 +3012,7 @@ class Environment(tk.Tk, object):
         self.flag = self.canvas_widget.create_rectangle(
             flag_center[0] - 10, flag_center[1] - 10,  # Top left corner
             flag_center[0] + 10, flag_center[1] + 10,  # Bottom right corner
-            outline='grey', fill='yellow')
+            outline='black', fill='yellow')
         # Saving the coordinates of the final point according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_flag = [self.canvas_widget.coords(self.flag)[0] + 3,
