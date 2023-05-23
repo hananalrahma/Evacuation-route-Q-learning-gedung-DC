@@ -1,4 +1,4 @@
-# import lilbrary
+# import library
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -92,32 +92,31 @@ class QLearningTable:
 
     # merencanakan hasil untuk jumlah langkah
     def plot_results(self, steps, cost):
-
+        
         f, (ax1, ax2) = plt.subplot(nrows=1, ncols=2)
-
+        
         ax1.plot(np.arange(len(steps)), steps, 'b')
         ax1.set_xlabel('Episode')
         ax1.set_ylabel('Steps')
-        ax1.set_title('Episode via steps')
-
-        ax2.plot(np.arange(len(cost)), cost, 'r')
+        ax1.set_tittle('Episode via steps')
+        
+        ax2.plot(np.arange(len(steps)), steps, 'r')
         ax2.set_xlabel('Episode')
-        ax2.set_ylabel('Cost')
-        ax2.set_title('Episode via cost')
-
+        ax2.set_ylabel('Steps')
+        ax2.set_tittle('Episode via steps')
+        
         plt.tight_layout()
-
+        
         plt.figure()
         plt.plot(np.arange(len(steps)), steps, 'b')
         plt.title('Episode via steps')
         plt.xlabel('Episode')
         plt.ylabel('Steps')
-
+        
         plt.figure()
-        plt.plot(np.arange(len(cost)), cost, 'r')
+        plt.plot(np.arange(len(steps)), steps, 'r')
         plt.title('Episode via cost')
         plt.xlabel('Episode')
         plt.ylabel('Cost')
-
-        # menampilkan plots
+        
         plt.show()

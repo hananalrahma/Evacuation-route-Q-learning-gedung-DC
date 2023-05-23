@@ -49,7 +49,7 @@ def update():
     env.final()
 
     # Showing the Q-table with values for each action
-    RL.print_q_table()
+    RL.print_q_tables()
 
     # Plotting the results
     RL.plot_results(steps, all_costs)
