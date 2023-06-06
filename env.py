@@ -2999,7 +2999,7 @@ class Environment(tk.Tk, object):
          self.canvas_widget.coords(self.obstacle207)[3] - 3]
 
          # Creating an agent of Mobile Robot - red point
-        agent_center = self.o + np.array([pixels * 10, pixels * 5])
+        agent_center = self.o + np.array([pixels * 17, pixels * 15])
 
         self.agent = self.canvas_widget.create_oval(
             agent_center[0] - 7, agent_center[1] - 7,
@@ -3030,7 +3030,7 @@ class Environment(tk.Tk, object):
 
         # Updating agent
         self.canvas_widget.delete(self.agent)
-        agent_center = self.o + np.array([pixels * 10, pixels * 5])
+        agent_center = self.o + np.array([pixels * 17, pixels * 15])
         self.agent = self.canvas_widget.create_oval(
             agent_center[0] - 7, agent_center[1] - 7,
             agent_center[0] + 7, agent_center[1] + 7,
