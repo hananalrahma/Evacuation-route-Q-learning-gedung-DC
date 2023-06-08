@@ -1,3 +1,17 @@
+# File: run_agent.py
+# Description: Running algorithm
+# Environment: PyCharm and Anaconda environment
+#
+# MIT License
+# Copyright (c) 2018 Valentyn N Sichkar
+# github.com/sichkar-valentyn
+#
+# Reference to:
+# Valentyn N Sichkar. Reinforcement Learning Algorithms for global path planning // GitHub platform. DOI: 10.5281/zenodo.1317899
+
+
+
+# Importing classes
 from env import Environment
 from agent_brain import QLearningTable
 
@@ -10,46 +24,46 @@ def update():
     all_costs = []
 
     for episode in range(5000):
-        # observasi awal
+        # Initial Observation
         observation = env.reset()
-        
-        # update jumlah step untuk tiap episode
+
+        # Updating number of Steps for each Episode
         i = 0
 
-        # update cost untuk setiap episode
+        # Updating the cost for each episode
         cost = 0
 
         while True:
-            # me-refresh env
+            # Refreshing environment
             env.render()
 
-            # RL memilih aksi berdasarkan observasi
+            # RL chooses action based on observation
             action = RL.choose_action(str(observation))
 
-            # RL mengambil aksi dan mendapatkan observasi baru dan reward
+            # RL takes an action and get the next observation and reward
             observation_, reward, done = env.step(action)
 
-            # RL belajar dari transisi ini dan menghitung cost
+            # RL learns from this transition and calculating the cost
             cost += RL.learn(str(observation), action, reward, str(observation_))
 
             # Swapping the observations - current and next
             observation = observation_
 
-            # menghitung jumlah steps pada episode saat ini
+            # Calculating number of Steps in the current Episode
             i += 1
 
-            # break "while loop" jika sudah mencapai akhir dari episode saat ini
-            # break ketika agen mencapai goal atau menabrak obstacle
+            # Break while loop when it is the end of current Episode
+            # When agent reached the goal or obstacle
             if done:
                 steps += [i]
                 all_costs += [cost]
                 break
 
-    # memperlihatkan final route
+    # Showing the final route
     env.final()
 
     # Showing the Q-table with values for each action
-    RL.print_q_tables()
+    RL.print_q_table()
 
     # Plotting the results
     RL.plot_results(steps, all_costs)
@@ -57,10 +71,10 @@ def update():
 
 # Commands to be implemented after running this file
 if __name__ == "__main__":
-    # memanggil env
+    # Calling for the environment
     env = Environment()
-    # memanggil algoritma q-learning
+    # Calling for the main algorithm
     RL = QLearningTable(actions=list(range(env.n_actions)))
-    # Running the main loop with Episodes by calling the function update().
+    # Running the main loop with Episodes by calling the function update()
     env.after(100, update)  # Or just update()
     env.mainloop()
