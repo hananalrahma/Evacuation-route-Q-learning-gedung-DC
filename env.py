@@ -2999,7 +2999,12 @@ class Environment(tk.Tk, object):
          self.canvas_widget.coords(self.obstacle207)[3] - 3]
 
          # Creating an agent of Mobile Robot - red point
-        agent_center = self.o + np.array([pixels * 10, pixels * 6])
+        # agent_center = self.o + np.array([pixels * 1, pixels * 6]) #Dapur
+        agent_center = self.o + np.array([pixels * 10, pixels * 5]) #Gudang
+        # agent_center = self.o + np.array([pixels * 13, pixels * 15]) #Ruang rapat 2
+        # agent_center = self.o + np.array([pixels * 6, pixels * 6]) #Tempat wudu
+        # agent_center = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
+        # agent_center = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
 
         self.agent = self.canvas_widget.create_oval(
             agent_center[0] - 7, agent_center[1] - 7,
@@ -3030,7 +3035,12 @@ class Environment(tk.Tk, object):
 
         # Updating agent
         self.canvas_widget.delete(self.agent)
-        agent_center = self.o + np.array([pixels * 10, pixels * 6])
+        # agent_center = self.o + np.array([pixels * 1, pixels * 6]) #Dapur
+        agent_center = self.o + np.array([pixels * 10, pixels * 5]) #Gudang
+        # agent_center = self.o + np.array([pixels * 13, pixels * 5]) #Ruang rapat 2
+        # agent_center = self.o + np.array([pixels * 6, pixels * 6]) #Tempat wudu
+        # agent_center = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
+        # agent_center = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
         self.agent = self.canvas_widget.create_oval(
             agent_center[0] - 7, agent_center[1] - 7,
             agent_center[0] + 7, agent_center[1] + 7,
@@ -3351,7 +3361,7 @@ class Environment(tk.Tk, object):
         self.initial_point = self.canvas_widget.create_oval(
             self.o[0] - 4, self.o[1] - 4,
             self.o[0] + 4, self.o[1] + 4,
-            fill='blue', outline='blue')
+            fill='red', outline='red')
 
         # Filling the route
         for j in range(len(self.f)):
