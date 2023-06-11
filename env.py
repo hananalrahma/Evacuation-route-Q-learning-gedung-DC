@@ -2999,9 +2999,10 @@ class Environment(tk.Tk, object):
          self.canvas_widget.coords(self.obstacle207)[3] - 3]
 
          # Creating an agent of Mobile Robot - red point
+        #  penempatan agen
         # agent_center = self.o + np.array([pixels * 1, pixels * 6]) #Dapur
-        agent_center = self.o + np.array([pixels * 10, pixels * 5]) #Gudang
-        # agent_center = self.o + np.array([pixels * 13, pixels * 15]) #Ruang rapat 2
+        # agent_center = self.o + np.array([pixels * 10, pixels * 5]) #Gudang
+        agent_center = self.o + np.array([pixels * 13, pixels * 15]) #Ruang rapat 2
         # agent_center = self.o + np.array([pixels * 6, pixels * 6]) #Tempat wudu
         # agent_center = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
         # agent_center = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
@@ -3017,7 +3018,7 @@ class Environment(tk.Tk, object):
         self.flag = self.canvas_widget.create_rectangle(
             flag_center[0] - 10, flag_center[1] - 10,  # Top left corner
             flag_center[0] + 10, flag_center[1] + 10,  # Bottom right corner
-            outline='black', fill='yellow')
+            outline='black', fill='#0BDA51')
         # Saving the coordinates of the final point according to the size of agent
         # In order to fit the coordinates of the agent
         self.coords_flag = [self.canvas_widget.coords(self.flag)[0] + 3,
@@ -3035,9 +3036,10 @@ class Environment(tk.Tk, object):
 
         # Updating agent
         self.canvas_widget.delete(self.agent)
+        # starting point agen untuk rute
         # agent_center = self.o + np.array([pixels * 1, pixels * 6]) #Dapur
-        agent_center = self.o + np.array([pixels * 10, pixels * 5]) #Gudang
-        # agent_center = self.o + np.array([pixels * 13, pixels * 5]) #Ruang rapat 2
+        # agent_center = self.o + np.array([pixels * 10, pixels * 5]) #Gudang
+        agent_center = self.o + np.array([pixels * 13, pixels * 5]) #Ruang rapat 2
         # agent_center = self.o + np.array([pixels * 6, pixels * 6]) #Tempat wudu
         # agent_center = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
         # agent_center = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
@@ -3358,9 +3360,18 @@ class Environment(tk.Tk, object):
         print('The longest route:', self.longest)
 
         # Creating initial point
+        # initial_point_agen = self.o + np.array([pixels * 1, pixels * 6]) #Dapur
+        # initial_point_agen = self.o + np.array([pixels * 10, pixels * 5]) #Gudang
+        initial_point_agen = self.o + np.array([pixels * 13, pixels * 15]) #Ruang rapat 2
+        # initial_point_agen = self.o + np.array([pixels * 6, pixels * 6]) #Tempat wudu
+        # initial_point_agen = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
+        # initial_point_agen = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
+        
         self.initial_point = self.canvas_widget.create_oval(
-            self.o[0] - 4, self.o[1] - 4,
-            self.o[0] + 4, self.o[1] + 4,
+            # self.o[0] - 4, self.o[1] - 4,
+            # self.o[0] + 4, self.o[1] + 4,
+            initial_point_agen[0] - 4, initial_point_agen[1] - 4,
+            initial_point_agen[0] + 4, initial_point_agen[1] + 4,
             fill='red', outline='red')
 
         # Filling the route
@@ -3370,7 +3381,7 @@ class Environment(tk.Tk, object):
             self.track = self.canvas_widget.create_oval(
                 self.f[j][0] - 3 + self.o[0] - 4, self.f[j][1] - 3 + self.o[1] - 4,
                 self.f[j][0] - 3 + self.o[0] + 4, self.f[j][1] - 3 + self.o[1] + 4,
-                fill='blue', outline='blue')
+                fill='red', outline='red')
             # Writing the final route in the global variable a
             a[j] = self.f[j]
 
