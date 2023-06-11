@@ -3003,7 +3003,7 @@ class Environment(tk.Tk, object):
         # agent_center = self.o + np.array([pixels * 1, pixels * 6]) #Dapur
         # agent_center = self.o + np.array([pixels * 10, pixels * 5]) #Gudang
         agent_center = self.o + np.array([pixels * 13, pixels * 15]) #Ruang rapat 2
-        # agent_center = self.o + np.array([pixels * 6, pixels * 6]) #Tempat wudu
+        # agent_center = self.o + np.array([pixels * 5, pixels * 6]) #Tempat wudu
         # agent_center = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
         # agent_center = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
 
@@ -3039,8 +3039,8 @@ class Environment(tk.Tk, object):
         # starting point agen untuk rute
         # agent_center = self.o + np.array([pixels * 1, pixels * 6]) #Dapur
         # agent_center = self.o + np.array([pixels * 10, pixels * 5]) #Gudang
-        agent_center = self.o + np.array([pixels * 13, pixels * 5]) #Ruang rapat 2
-        # agent_center = self.o + np.array([pixels * 6, pixels * 6]) #Tempat wudu
+        agent_center = self.o + np.array([pixels * 13, pixels * 15]) #ruang rapat 2
+        # agent_center = self.o + np.array([pixels * 5, pixels * 6]) #Tempat wudu
         # agent_center = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
         # agent_center = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
         self.agent = self.canvas_widget.create_oval(
@@ -3362,8 +3362,8 @@ class Environment(tk.Tk, object):
         # Creating initial point
         # initial_point_agen = self.o + np.array([pixels * 1, pixels * 6]) #Dapur
         # initial_point_agen = self.o + np.array([pixels * 10, pixels * 5]) #Gudang
-        initial_point_agen = self.o + np.array([pixels * 13, pixels * 15]) #Ruang rapat 2
-        # initial_point_agen = self.o + np.array([pixels * 6, pixels * 6]) #Tempat wudu
+        initial_point_agen = self.o + np.array([pixels * 13, pixels * 15]) #Gudang
+        # initial_point_agen = self.o + np.array([pixels * 5, pixels * 6]) #Tempat wudu
         # initial_point_agen = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
         # initial_point_agen = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
         
