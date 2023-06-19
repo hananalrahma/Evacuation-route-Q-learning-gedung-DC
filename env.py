@@ -3005,8 +3005,8 @@ class Environment(tk.Tk, object):
         # agent_center = self.o + np.array([pixels * 13, pixels * 15]) #Ruang rapat 2
         # agent_center = self.o + np.array([pixels * 5, pixels * 6]) #Tempat wudu
         # agent_center = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
-        # agent_center = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
-        agent_center = self.o + np.array([pixels * 17, pixels * 13]) #Ruang rapat 1
+        agent_center = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
+        # agent_center = self.o + np.array([pixels * 17, pixels * 13]) #Ruang rapat 1
 
         self.agent = self.canvas_widget.create_oval(
             agent_center[0] - 7, agent_center[1] - 7,
@@ -3033,7 +3033,7 @@ class Environment(tk.Tk, object):
     # Function to reset the environment and start new Episode
     def reset(self):
         self.update()
-        #time.sleep(0.5)
+        # time.sleep(0.5)
 
         # Updating agent
         self.canvas_widget.delete(self.agent)
@@ -3043,8 +3043,8 @@ class Environment(tk.Tk, object):
         # agent_center = self.o + np.array([pixels * 13, pixels * 15]) #ruang rapat 2
         # agent_center = self.o + np.array([pixels * 5, pixels * 6]) #Tempat wudu
         # agent_center = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
-        # agent_center = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
-        agent_center = self.o + np.array([pixels * 17, pixels * 13]) #Ruang rapat 1
+        agent_center = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
+        # agent_center = self.o + np.array([pixels * 17, pixels * 13]) #Ruang rapat 1
         # agent_center = self.o + np.array([pixels * 29, pixels * 14]) #Ruang 1A-02
         
         self.agent = self.canvas_widget.create_oval(
@@ -3099,7 +3099,7 @@ class Environment(tk.Tk, object):
 
         # Calculating the reward for the agent
         if next_state == self.coords_flag:
-            time.sleep(0.1)
+            # time.sleep(0.1)
             reward = 1
             done = True
             next_state = 'goal'
@@ -3351,7 +3351,7 @@ class Environment(tk.Tk, object):
 
     # Function to refresh the environment
     def render(self):
-        #time.sleep(0.03)
+        # time.sleep(0.03)
         self.update()
 
     # Function to show the found route
@@ -3369,8 +3369,8 @@ class Environment(tk.Tk, object):
         # initial_point_agen = self.o + np.array([pixels * 13, pixels * 15]) #Ruang rapat 2
         # initial_point_agen = self.o + np.array([pixels * 5, pixels * 6]) #Tempat wudu
         # initial_point_agen = self.o + np.array([pixels * 4, pixels * 4]) #Toilet
-        # initial_point_agen = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
-        initial_point_agen = self.o + np.array([pixels * 17, pixels * 13]) #Ruang rapat 1
+        initial_point_agen = self.o + np.array([pixels * 7, pixels * 9]) #Toilet difabel
+        # initial_point_agen = self.o + np.array([pixels * 17, pixels * 13]) #Ruang rapat 1
         # initial_point_agen = self.o + np.array([pixels * 29, pixels * 14]) #1A-02
         
         

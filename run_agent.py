@@ -64,3 +64,5 @@ if __name__ == "__main__":
     # Running the main loop with Episodes by calling the function update()
     env.after(100, update)  # Or just update()
     env.mainloop()
+    
+

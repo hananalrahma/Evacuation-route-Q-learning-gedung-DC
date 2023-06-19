@@ -1,7 +1,8 @@
-
-                            # # self.coords_obstacle13,
-                            # self.coords_obstacle14,
-                            # self.coords_obstacle15,
-                            # self.coords_obstacle16,
-                            # self.coords_obstacle17,
-                            # self.coords_obstacle18,
+# if __name__ == "__main__":
+# #     # Calling for the environment
+# #     env = Environment()
+# #     # Calling for the main algorithm
+# #     RL = QLearningTable(actions=list(range(env.n_actions)))
+# #     # Running the main loop with Episodes by calling the function update()
+# #     env.after(100, update)  # Or just update()
+# #     env.mainloop()
