@@ -7,7 +7,7 @@ import time
 
 # Ukuran grid
 grid_width = 50
-grid_height = 18
+grid_height = 20
 
 # Inisialisasi lingkungan grid
 environment = [[0] * grid_width for _ in range(grid_height)]
@@ -236,22 +236,6 @@ def train_q_learning():
     print("CPU Time:", cpu_time, "seconds")
     
     
-    # Menampilkan grafik episode
-    
-    # plt.subplot(2, 1, 1)
-    
-    # plt.plot(range(num_episodes), episode_rewards, label="rewards")
-    # plt.title("Episode via Rewards")
-    # plt.ylabel("Rewards")
-    
-    # plt.subplot(2, 1, 2)
-    # plt.plot(range(num_episodes), episode_steps, label="steps")
-    # plt.ylabel("Steps")
-    # plt.xlabel("Episode")
-    # plt.legend()
-    
-    # plt.show()
-    
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 6))
     
     #plot pertama
@@ -268,6 +252,8 @@ def train_q_learning():
     
     ax1.legend()
     ax2.legend()
+    # memberikan jarak
+    plt.tight_layout()
     
     # memberikan jarak
     plt.tight_layout()
@@ -275,16 +261,18 @@ def train_q_learning():
     #grafik terpisah 1
     plt.figure()
     plt.plot(range(num_episodes), episode_rewards, 'b')
-    plt.title('Episode via steps')
+    plt.title('Episode via rewards')
     plt.xlabel('Episode')
-    plt.ylabel('Steps')
+    plt.ylabel('Rewards')
     
     #grafik terpisah 2
     plt.figure()
     plt.plot(range(num_episodes), episode_steps, 'r')
-    plt.title('Episode via cost')
+    plt.title('Episode via steps')
     plt.xlabel('Episode')
-    plt.ylabel('Cost')
+    plt.ylabel('Steps')
+    
+    plt.show()
     
     plt.show()
     
@@ -306,26 +294,27 @@ obstacles = [
     (9, 5), (10, 5), (7, 3), (8, 3), (9, 3),
     (10, 3), (10, 2), (10, 1), (10, 0), (0, 8),
     (18, 5), (17, 5), (16, 5), (15, 5), (14, 5),
-    (13, 5), (13, 6), (13, 7), (13, 8), (13, 9),
-    (13, 10) ,(13, 11), (13, 12), (13, 14), (13, 15),
+    (14, 5), (14, 6), (14, 7), (14, 8), (14, 9),
+    (14, 10) ,(14, 11), (14, 12), (14, 14), (14, 15),
     (14, 15), (15, 15), (16, 15), (17, 15), (18, 15),
-    (13, 16), (13, 19), (13, 20), (13, 21), (13, 22),
-    (13, 23), (13, 24), (13, 27), (13, 28), (13, 28),
+    (14, 16), (14, 19), (14, 20), (14, 21), (14, 22),
+    (14, 23), (14, 24), (14, 27), (14, 28), (14, 28),
     (14, 28), (15, 28), (16, 28), (17, 28), (18, 28),
     (14, 30), (14, 31), (14, 32), (14, 33), (14, 34),
     (14, 35), (15, 35), (16, 35), (17, 35), (18, 35),
     (10, 12), (10, 13), (10, 14), (10, 15), (10, 16),
-    (10, 17), (10, 18), (10, 19), (10, 20), (10, 21),
-    (9, 20), (8, 20), (7, 20), (6, 20), (5, 20),
-    (4, 20), (3, 20), (2, 20), (1, 20), (0, 20),
+    (10, 17), (10, 18), (10, 19), (10, 21), (10, 21),
+    (9, 21), (8, 21), (7, 21), (6, 21), (5, 21),
+    (4, 21), (3, 21), (2, 21), (1, 21), (0, 21),
     (10, 22), (10, 23), (10, 24), (10, 25), (10, 26),
-    (10, 27), (10, 28), (10, 31), (10, 32), (10, 33),
+    (10, 27), (10, 28), (10, 34),
     (10, 34), (10, 35), (10, 36), (10, 37), (10, 38),
-    (10, 39), (10, 40), (10, 43), (10, 44), (9, 44),
-    (8, 44), (7, 44), (6, 44), (5, 44), (4, 44), (3, 44),
-    (2, 44), (1, 44), (0, 44), (9, 32), (8, 32), (7, 32),
-    (6, 32), (5, 32), (4, 32), (3, 32), (2, 32), (1, 32),
-    (0, 32)# Tambahkan obstacle lainnya di sini
+    (10, 39), (10, 40), (10, 43), (10, 47), (9, 47),
+    (8, 47), (7, 47), (6, 47), (5, 47), (4, 47), (3, 47),
+    (2, 47), (1, 47), (0, 47), (9, 34), (8, 34), (7, 34),
+    (6, 34), (5, 34), (4, 34), (3, 34), (2, 34), (1, 34),
+    (0, 34), (19, 5), (19, 15), (19, 28), (19, 35), (10, 20),
+    (10, 29), (10, 30), (10, 33), (10, 41), (10, 42), (10, 46)# Tambahkan obstacle lainnya di sini
 ]
 
 for obstacle in obstacles:
@@ -337,11 +326,16 @@ draw_environment(environment)
 draw_agent_and_goal()
 
 # Mengatur posisi awal agen
-set_start_position(6, 0) #ruang 1A
+set_start_position(1, 40) #ruang 1A
+# set_start_position(9, 29)
+# set_start_position(15, 29)
+# set_start_position(9, 10)
+# set_start_position(14, 17)
+# set_start_position(14, 13)
 
 
 # Mengatur posisi tujuan agen
-set_goal_position(grid_height - 6, grid_width - 50)
+set_goal_position(grid_height - 8, grid_width - 50)
 
 # Tombol untuk memulai pelatihan
 start_button = tk.Button(root, text="Start Training", command=start_training)
