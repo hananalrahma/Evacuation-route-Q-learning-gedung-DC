@@ -3100,7 +3100,7 @@ class Environment(tk.Tk, object):
         # Calculating the reward for the agent
         if next_state == self.coords_flag:
             # time.sleep(0.1)
-            reward = 1
+            reward = 10
             done = True
             next_state = 'goal'
 
@@ -3335,7 +3335,7 @@ class Environment(tk.Tk, object):
                             self.coords_obstacle204,
                             self.coords_obstacle205]:
 
-            reward = -1
+            reward = -10
             done = True
             next_state = 'obstacle'
 
@@ -3344,7 +3344,7 @@ class Environment(tk.Tk, object):
             self.i = 0
 
         else:
-            reward = 0
+            reward = -1
             done = False
 
         return next_state, reward, done
