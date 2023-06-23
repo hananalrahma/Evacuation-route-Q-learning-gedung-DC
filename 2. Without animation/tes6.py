@@ -53,6 +53,7 @@ def get_reward(state, environment):
         return 10  # Jika mencapai tujuan
     else:
         return -1  # Jika langkah normal
+    
 
 def update_q_table(state, action, next_state, reward):
     # Memperbarui nilai Q berdasarkan algoritma Q-learning
@@ -82,8 +83,24 @@ def find_shortest_path():
 
         state = row * grid_width + col
         shortest_path.append(state)
+        
 
     return shortest_path
+
+# Menghitung jumlah langkah terpendek
+def display_shortest_path_length():
+    shortest_path = find_shortest_path()
+    shortest_path_length = len(shortest_path) - 1
+    
+    return shortest_path_length
+    
+
+# Menampilkan Q-table untuk jalur terpendek
+def display_shortest_q_table():
+    # Menampilkan nilai Q-table
+    print("Q-Table Shortest Path:")
+    for state in find_shortest_path():
+        print(q_table[state])
 
 # Membuat GUI Tkinter
 root = tk.Tk()
@@ -108,8 +125,8 @@ def draw_environment(environment):
             canvas.create_line(x1, y1, x2, y1)
             canvas.create_line(x1, y1, x1, y2)
 
-    canvas.create_text(x1 + 5, y1 + 5, anchor=tk.NW, text="Start", fill="green")
-    canvas.create_text(x1 + cell_width - 5, y1 + cell_width - 5, anchor=tk.SE, text="Goal", fill="red")
+    # canvas.create_text(x1 + 5, y1 + 5, anchor=tk.NW, text="Start", fill="green")
+    # canvas.create_text(x1 + cell_width - 5, y1 + cell_width - 5, anchor=tk.SE, text="Goal", fill="red")
     root.update()
 
 def draw_agent_and_goal():
@@ -121,20 +138,31 @@ def draw_agent_and_goal():
     x1 = start_col * cell_width + cell_width // 2
     y1 = start_row * cell_width + cell_width // 2
     canvas.delete("agent")
-    canvas.create_oval(x1 - 5, y1 - 5, x1 + 5, y1 + 5, fill="blue", tags="agent")
+    canvas.create_oval(x1 - 5, y1 - 5, x1 + 5, y1 + 5, fill="#254ED7", tags="agent")
 
     x2 = goal_col * cell_width + cell_width // 2
     y2 = goal_row * cell_width + cell_width // 2
     canvas.delete("goal")
-    canvas.create_oval(x2 - 5, y2 - 5, x2 + 5, y2 + 5, fill="yellow", tags="goal")
+    canvas.create_rectangle(x2 - 10, y2 - 10, x2 + 10, y2 + 10, fill="#1ACB26", tags="goal")
 
     root.update()
+
+def check_convergence(episode_rewards):
+    # Mengecek konvergensi berdasarkan perbedaan rewards episode sebelumnya dan saat ini
+    if len(episode_rewards) > 1:
+        last_reward = episode_rewards[-2]
+        current_reward = episode_rewards[-1]
+        diff = abs(current_reward - last_reward)
+        if diff < 0.1:
+            return True
+    return False
 
 def train_q_learning():
     # Melatih Q-learning untuk mencari jalur terpendek
     num_episodes = 5000
     episode_rewards = []
     episode_steps = []
+    converged_episode = -1
     
     start_time = time.process_time()
 
@@ -172,21 +200,22 @@ def train_q_learning():
 
         episode_rewards.append(episode_reward)
         episode_steps.append(episode_step)
-
-    # Menampilkan grafik episode
-    plt.plot(range(num_episodes), episode_rewards, label="Rewards")
-    plt.plot(range(num_episodes), episode_steps, label="Steps")
-    plt.xlabel("Episode")
-    plt.ylabel("Value")
-    plt.title("Episode Rewards and Steps")
-    plt.legend()
-    plt.show()
+        
+        if check_convergence(episode_rewards) and converged_episode == -1:
+            converged_episode = episode
+        
+    # Menampilkan Q-table setelah training selesai
+    display_shortest_q_table()
 
     # Menampilkan rute terpendek
     shortest_path = find_shortest_path()
     print("Shortest Path:")
     print(shortest_path)
+    
+    shortest_path_length = display_shortest_path_length()
+    print("Shortest Path Length:", shortest_path_length)
 
+    print("Converged Episode:", converged_episode)
     # Menggambar rute terpendek
     def draw_shortest_path():
         canvas.delete("path")
@@ -205,11 +234,30 @@ def train_q_learning():
     end_time = time.process_time()
     cpu_time = end_time - start_time
     print("CPU Time:", cpu_time, "seconds")
+    
+    
+    # Menampilkan grafik episode
+    
+    plt.subplot(2, 1, 1)
+    
+    plt.plot(range(num_episodes), episode_rewards, label="rewards")
+    plt.title("Episode via Rewards")
+    plt.ylabel("Rewards")
+    
+    plt.subplot(2, 1, 2)
+    plt.plot(range(num_episodes), episode_steps, label="steps")
+    plt.ylabel("Steps")
+    plt.xlabel("Episode")
+    plt.legend()
+    
+    plt.show()
+    
 
 def start_training():
     # Memulai proses pelatihan dalam thread terpisah
     training_thread = threading.Thread(target=train_q_learning)
     training_thread.start()
+
 
 # Mengatur obstacle
 obstacles = [
@@ -253,12 +301,7 @@ draw_environment(environment)
 draw_agent_and_goal()
 
 # Mengatur posisi awal agen
-set_start_position(1, 10) #ruang 1A
-# set_start_position(9, 29)
-# set_start_position(15, 29)
-# set_start_position(9, 10)
-# set_start_position(14, 17)
-# set_start_position(14, 13)
+set_start_position(6, 0) #ruang 1A
 
 
 # Mengatur posisi tujuan agen
