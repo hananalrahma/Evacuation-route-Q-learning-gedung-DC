@@ -258,13 +258,13 @@ def train_q_learning():
     ax1.plot(range(num_episodes), episode_rewards, 'b', label='rewards')
     ax1.set_xlabel('Episode')
     ax1.set_ylabel('Rewards')
-    ax1.set_title('Episode via steps')
+    ax1.set_title('Episode via rewards')
 
     #plot kedua
     ax2.plot(range(num_episodes), episode_steps, 'r', label='steps')
     ax2.set_xlabel('Episode')
     ax2.set_ylabel('Steps')
-    ax2.set_title('Episode via cost')
+    ax2.set_title('Episode via steps')
     
     ax1.legend()
     ax2.legend()
@@ -275,16 +275,16 @@ def train_q_learning():
     #grafik terpisah 1
     plt.figure()
     plt.plot(range(num_episodes), episode_rewards, 'b')
-    plt.title('Episode via steps')
+    plt.title('Episode via rewards')
     plt.xlabel('Episode')
-    plt.ylabel('Steps')
+    plt.ylabel('Rewards')
     
     #grafik terpisah 2
     plt.figure()
     plt.plot(range(num_episodes), episode_steps, 'r')
-    plt.title('Episode via cost')
+    plt.title('Episode via steps')
     plt.xlabel('Episode')
-    plt.ylabel('Cost')
+    plt.ylabel('Steps')
     
     plt.show()
     
