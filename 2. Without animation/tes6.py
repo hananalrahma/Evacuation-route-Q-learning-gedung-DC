@@ -203,9 +203,13 @@ def train_q_learning():
         
         if check_convergence(episode_rewards) and converged_episode == -1:
             converged_episode = episode
+            end_time = time.process_time()
+            elapsed_time = end_time - start_time
+            print("Time to Convergence:", elapsed_time, "seconds")
+            
         
-    # Menampilkan Q-table setelah training selesai
-    display_shortest_q_table()
+    # # Menampilkan Q-table setelah training selesai
+    # display_shortest_q_table()
 
     # Menampilkan rute terpendek
     shortest_path = find_shortest_path()
@@ -214,8 +218,8 @@ def train_q_learning():
     
     shortest_path_length = display_shortest_path_length()
     print("Shortest Path Length:", shortest_path_length)
-
-    print("Converged Episode:", converged_episode)
+    
+    
     # Menggambar rute terpendek
     def draw_shortest_path():
         canvas.delete("path")
@@ -230,6 +234,8 @@ def train_q_learning():
 
     draw_shortest_path()
 
+    print("Converged Episode:", converged_episode)
+    
     # Mengukur CPU time
     end_time = time.process_time()
     cpu_time = end_time - start_time
