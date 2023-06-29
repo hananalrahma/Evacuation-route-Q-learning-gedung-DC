@@ -234,44 +234,7 @@ def train_q_learning():
     end_time = time.process_time()
     cpu_time = end_time - start_time
     print("CPU Time:", cpu_time, "seconds")
-    
-    
-    # Menampilkan grafik episode
-    
-    # plt.subplot(2, 1, 1)
-    
-    # plt.plot(range(num_episodes), episode_rewards, label="rewards")
-    # plt.title("Episode via Rewards")
-    # plt.ylabel("Rewards")
-    
-    # plt.subplot(2, 1, 2)
-    # plt.plot(range(num_episodes), episode_steps, label="steps")
-    # plt.ylabel("Steps")
-    # plt.xlabel("Episode")
-    # plt.legend()
-    
-    # plt.show()
-    
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 6))
-    
-    #plot pertama
-    ax1.plot(range(num_episodes), episode_rewards, 'b', label='rewards')
-    ax1.set_xlabel('Episode')
-    ax1.set_ylabel('Rewards')
-    ax1.set_title('Episode via rewards')
-
-    #plot kedua
-    ax2.plot(range(num_episodes), episode_steps, 'r', label='steps')
-    ax2.set_xlabel('Episode')
-    ax2.set_ylabel('Steps')
-    ax2.set_title('Episode via steps')
-    
-    ax1.legend()
-    ax2.legend()
-    
-    # memberikan jarak
-    plt.tight_layout()
-    
+               
     #grafik terpisah 1
     plt.figure()
     plt.plot(range(num_episodes), episode_rewards, 'b')
@@ -337,7 +300,7 @@ draw_environment(environment)
 draw_agent_and_goal()
 
 # Mengatur posisi awal agen
-set_start_position(6, 0) #ruang 1A
+set_start_position(1, 34)
 
 
 # Mengatur posisi tujuan agen
