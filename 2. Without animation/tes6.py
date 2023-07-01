@@ -124,9 +124,6 @@ def draw_environment(environment):
 
             canvas.create_line(x1, y1, x2, y1)
             canvas.create_line(x1, y1, x1, y2)
-
-    # canvas.create_text(x1 + 5, y1 + 5, anchor=tk.NW, text="Start", fill="green")
-    # canvas.create_text(x1 + cell_width - 5, y1 + cell_width - 5, anchor=tk.SE, text="Goal", fill="red")
     root.update()
 
 def draw_agent_and_goal():
@@ -218,7 +215,6 @@ def train_q_learning():
     
     shortest_path_length = display_shortest_path_length()
     print("Shortest Path Length:", shortest_path_length)
-    
     
     # Menggambar rute terpendek
     def draw_shortest_path():

@@ -124,9 +124,6 @@ def draw_environment(environment):
 
             canvas.create_line(x1, y1, x2, y1)
             canvas.create_line(x1, y1, x1, y2)
-
-    # canvas.create_text(x1 + 5, y1 + 5, anchor=tk.NW, text="Start", fill="green")
-    # canvas.create_text(x1 + cell_width - 5, y1 + cell_width - 5, anchor=tk.SE, text="Goal", fill="red")
     root.update()
 
 def draw_agent_and_goal():
@@ -203,9 +200,12 @@ def train_q_learning():
         
         if check_convergence(episode_rewards) and converged_episode == -1:
             converged_episode = episode
+            end_time = time.process_time()
+            elapsed_time = end_time - start_time
+            print("Time to Convergence:", elapsed_time, "seconds")
         
     # Menampilkan Q-table setelah training selesai
-    display_shortest_q_table()
+    # display_shortest_q_table()
 
     # Menampilkan rute terpendek
     shortest_path = find_shortest_path()
@@ -235,29 +235,6 @@ def train_q_learning():
     cpu_time = end_time - start_time
     print("CPU Time:", cpu_time, "seconds")
     
-    
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 6))
-    
-    #plot pertama
-    ax1.plot(range(num_episodes), episode_rewards, 'b', label='rewards')
-    ax1.set_xlabel('Episode')
-    ax1.set_ylabel('Rewards')
-    ax1.set_title('Episode via steps')
-
-    #plot kedua
-    ax2.plot(range(num_episodes), episode_steps, 'r', label='steps')
-    ax2.set_xlabel('Episode')
-    ax2.set_ylabel('Steps')
-    ax2.set_title('Episode via cost')
-    
-    ax1.legend()
-    ax2.legend()
-    # memberikan jarak
-    plt.tight_layout()
-    
-    # memberikan jarak
-    plt.tight_layout()
-    
     #grafik terpisah 1
     plt.figure()
     plt.plot(range(num_episodes), episode_rewards, 'b')
@@ -274,7 +251,6 @@ def train_q_learning():
     
     plt.show()
     
-    plt.show()
     
 
 def start_training():
@@ -285,14 +261,14 @@ def start_training():
 
 # Mengatur obstacle
 obstacles = [
-    (0, 4), (1, 4), (2, 4), (3, 4), (3, 3),
-    (3, 5), (5, 3), (5, 2), (5, 1), (5, 0),
-    (5, 5), (5, 6), (5, 7), (0, 8), (1, 8),
-    (2, 8), (3, 8), (4, 8), (5, 8), (6, 8),
-    (7, 8), (8, 8), (9, 8), (10, 8), (10, 7),
-    (10, 9), (8, 7), (8, 6), (8, 5), (7, 5),
-    (9, 5), (10, 5), (7, 3), (8, 3), (9, 3),
-    (10, 3), (10, 2), (10, 1), (10, 0), (0, 8),
+    (0, 3), (1, 3), (2, 3), (3, 3), (3, 2), #tembok tengah antara toilet pria dan wanita.
+    (3, 4), (5, 2), (5, 1), (5, 0), (5, 4),
+    (5, 5), (5, 6), (5, 7), (0, 7), (1, 7),
+    (2, 7), (3, 7), (4, 7), (5, 7), (6, 7),
+    (7, 7), (7, 7), (9, 7), (10, 7), (10, 6),
+    (10, 8), (8, 7), (8, 6), (8, 5), (7, 4), (8, 4), (10, 11),
+    (9, 4), (10, 4), (7, 2), (8, 2), (9, 2),
+    (10, 2), (10, 2), (10, 1), (10, 0),
     (18, 5), (17, 5), (16, 5), (15, 5), (14, 5),
     (14, 5), (14, 6), (14, 7), (14, 8), (14, 9),
     (14, 10) ,(14, 11), (14, 12), (14, 14), (14, 15),
@@ -303,18 +279,17 @@ obstacles = [
     (14, 30), (14, 31), (14, 32), (14, 33), (14, 34),
     (14, 35), (15, 35), (16, 35), (17, 35), (18, 35),
     (10, 12), (10, 13), (10, 14), (10, 15), (10, 16),
-    (10, 17), (10, 18), (10, 19), (10, 21), (10, 21),
-    (9, 21), (8, 21), (7, 21), (6, 21), (5, 21),
-    (4, 21), (3, 21), (2, 21), (1, 21), (0, 21),
+    (10, 17), (10, 18), (10, 19), (10, 21), 
+    (10, 20), (9, 20), (8, 20), (7, 20), (6, 20), (5, 20), (4, 20), (3, 20), (2, 20), (1, 20), (0, 20),
     (10, 22), (10, 23), (10, 24), (10, 25), (10, 26),
     (10, 27), (10, 28), (10, 34),
     (10, 34), (10, 35), (10, 36), (10, 37), (10, 38),
-    (10, 39), (10, 40), (10, 43), (10, 47), (9, 47),
-    (8, 47), (7, 47), (6, 47), (5, 47), (4, 47), (3, 47),
-    (2, 47), (1, 47), (0, 47), (9, 34), (8, 34), (7, 34),
-    (6, 34), (5, 34), (4, 34), (3, 34), (2, 34), (1, 34),
-    (0, 34), (19, 5), (19, 15), (19, 28), (19, 35), (10, 20),
-    (10, 29), (10, 30), (10, 33), (10, 41), (10, 42), (10, 46)# Tambahkan obstacle lainnya di sini
+    (10, 39), (10, 40), (9, 46), (10, 45),
+    (8, 46), (7, 46), (6, 46), (5, 46), (4, 46), (3, 46),
+    (2, 46), (1, 46), (0, 46), (9, 33), (8, 33), (7, 33),
+    (6, 33), (5, 33), (4, 33), (3, 33), (2, 33), (1, 33),
+    (0, 33), (10, 32), (19, 5), (19, 15), (19, 28), (19, 35), (10, 20),
+    (10, 29), (10, 33), (10, 41), (10, 42), (10, 46)# Tambahkan obstacle lainnya di sini
 ]
 
 for obstacle in obstacles:
