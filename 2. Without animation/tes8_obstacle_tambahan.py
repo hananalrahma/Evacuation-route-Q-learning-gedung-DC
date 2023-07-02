@@ -320,13 +320,13 @@ draw_environment(environment)
 draw_agent_and_goal()
 
 # Mengatur posisi awal agen
-set_start_position(1, 34) #ruang 1A
+set_start_position(1, 9)
 # daftar koordinat awal agen:
 # 1A: 1,34
 # 1B: 1,22
 # 1C: 1,9
-# ruang rapat 1: 17,27
-# ruang rapat 2: 17,7
+# ruang rapat 1: 19,27
+# ruang rapat 2: 19,6
 
 
 # Mengatur posisi tujuan agen
