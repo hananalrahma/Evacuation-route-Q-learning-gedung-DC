@@ -156,7 +156,7 @@ def check_convergence(episode_rewards):
 
 def train_q_learning():
     # Melatih Q-learning untuk mencari jalur terpendek
-    num_episodes = 5000
+    num_episodes = 2500
     episode_rewards = []
     episode_steps = []
     converged_episode = -1

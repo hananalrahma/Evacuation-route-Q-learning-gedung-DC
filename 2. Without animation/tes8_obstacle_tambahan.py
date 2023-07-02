@@ -156,7 +156,7 @@ def check_convergence(episode_rewards):
 
 def train_q_learning():
     # Melatih Q-learning untuk mencari jalur terpendek
-    num_episodes = 5000
+    num_episodes = 3000
     episode_rewards = []
     episode_steps = []
     converged_episode = -1
@@ -275,8 +275,8 @@ obstacles = [
     (14, 16), (14, 19), (14, 20), (14, 21), (14, 22),
     (14, 23), (14, 24), (14, 27), (14, 28), (14, 28),
     (14, 28), (15, 28), (16, 28), (17, 28), (18, 28),
-    (14, 30), (14, 31), (14, 32), (14, 33), (14, 34),
-    (14, 35), (15, 35), (16, 35), (17, 35), (18, 35),
+    (15, 30), (15, 31), (15, 32), (15, 33), (15, 34),
+    (15, 35), (16, 35), (17, 35), (18, 35),
     (10, 12), (10, 13), (10, 14), (10, 15), (10, 16),
     (10, 17), (10, 18), (10, 19), (10, 21), 
     (10, 20), (9, 20), (8, 20), (7, 20), (6, 20), (5, 20), (4, 20), (3, 20), (2, 20), (1, 20), (0, 20),
@@ -321,11 +321,12 @@ draw_agent_and_goal()
 
 # Mengatur posisi awal agen
 set_start_position(1, 34) #ruang 1A
-# set_start_position(9, 29)
-# set_start_position(15, 29)
-# set_start_position(9, 10)
-# set_start_position(14, 17)
-# set_start_position(14, 13)
+# daftar koordinat awal agen:
+# 1A: 1,34
+# 1B: 1,22
+# 1C: 1,9
+# ruang rapat 1: 17,27
+# ruang rapat 2: 17,7
 
 
 # Mengatur posisi tujuan agen
