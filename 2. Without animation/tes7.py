@@ -216,6 +216,8 @@ def train_q_learning():
     print("Shortest Path Length:", shortest_path_length)
 
     print("Converged Episode:", converged_episode)
+    
+    
     # Menggambar rute terpendek
     def draw_shortest_path():
         canvas.delete("path")
@@ -234,6 +236,7 @@ def train_q_learning():
     end_time = time.process_time()
     cpu_time = end_time - start_time
     print("CPU Time:", cpu_time, "seconds")
+    
     
     #grafik terpisah 1
     plt.figure()
@@ -300,15 +303,15 @@ draw_environment(environment)
 draw_agent_and_goal()
 
 # Mengatur posisi awal agen
-set_start_position(1, 34)
+set_start_position(19, 6)
 
 # daftar koordinat awal agen:
 # 1A: 1,34
 # 1B: 1,22
 # 1C: 1,9
 # ruang power: 19,34
-# ruang rapat 1: 17,27
-# ruang rapat 2: 17,7
+# ruang rapat 1: 19,27
+# ruang rapat 2: 19,6
 # toilet difabel: 9,6
 # tempat wudu: 7,6
 # toilet perempuan: 1,6

@@ -85,28 +85,28 @@ class QLearningTable:
         print('Final Q-table with values from the final route:')
         print(self.q_table_final)
 
-        print()
-        print('Length of full Q-table =', len(self.q_table.index))
-        print('Full Q-table:')
-        print(self.q_table)
+        # print()
+        # print('Length of full Q-table =', len(self.q_table.index))
+        # print('Full Q-table:')
+        # print(self.q_table)
 
     # Plotting the results for the number of steps
     def plot_results(self, steps, cost):
-        #
-        f, (ax1, ax2) = plt.subplots(nrows=1, ncols=2)
-        #
-        ax1.plot(np.arange(len(steps)), steps, 'b')
-        ax1.set_xlabel('Episode')
-        ax1.set_ylabel('Steps')
-        ax1.set_title('Episode via steps')
+        # #
+        # f, (ax1, ax2) = plt.subplots(nrows=1, ncols=2)
+        # #
+        # ax1.plot(np.arange(len(steps)), steps, 'b')
+        # ax1.set_xlabel('Episode')
+        # ax1.set_ylabel('Steps')
+        # ax1.set_title('Episode via steps')
 
-        #
-        ax2.plot(np.arange(len(cost)), cost, 'r')
-        ax2.set_xlabel('Episode')
-        ax2.set_ylabel('Cost')
-        ax2.set_title('Episode via cost')
+        # #
+        # ax2.plot(np.arange(len(cost)), cost, 'r')
+        # ax2.set_xlabel('Episode')
+        # ax2.set_ylabel('Cost')
+        # ax2.set_title('Episode via cost')
 
-        plt.tight_layout()  # Function to make distance between figures
+        # plt.tight_layout()  # Function to make distance between figures
 
         #
         plt.figure()

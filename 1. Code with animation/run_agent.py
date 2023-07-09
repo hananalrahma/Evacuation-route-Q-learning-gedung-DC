@@ -1,5 +1,6 @@
 from env import Environment
 from agent_brain import QLearningTable
+import time
 
 
 def update():
@@ -8,6 +9,8 @@ def update():
 
     # Summed costs for all episodes in resulted list
     all_costs = []
+    
+    start_time = time.process_time()
 
     for episode in range(5000):
         # Initial Observation
@@ -47,6 +50,10 @@ def update():
 
     # Showing the final route
     env.final()
+    
+    end_time = time.process_time()
+    cpu_time = end_time - start_time
+    print("CPU Time:", cpu_time, "seconds")
 
     # Showing the Q-table with values for each action
     RL.print_q_table()
