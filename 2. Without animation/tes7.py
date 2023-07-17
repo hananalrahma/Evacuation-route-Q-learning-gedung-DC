@@ -314,7 +314,7 @@ set_start_position(19, 6)
 # ruang rapat 2: 19,6
 # toilet difabel: 9,6
 # tempat wudu: 7,6
-# toilet perempuan: 1,6
+# toilet perempuan: 0,6
 # toilet laki-laki: 0,0
 # dapur: 6, 0
 
