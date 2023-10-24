@@ -1,0 +1,19 @@
+Koordinat awal agent pada environment tanpa obstacle tambahan
+1. 1A: 1,34
+2. 1B: 1,22
+3. 1C: 1,9
+4. ruang power: 19,34
+5. ruang rapat 1: 19,27
+6. ruang rapat 2: 19,6
+7. toilet difabel: 9,6
+8. tempat wudu: 7,6
+9. toilet perempuan: 0,6
+10. toilet laki-laki: 0,0
+11. dapur: 6, 0
+
+Koordinat awal agent pada environment dengan obstacle tambahan
+1. 1A: 1,34
+2. 1B: 1,22
+3. 1C: 1,9
+4. ruang rapat 1: 19,27
+5. ruang rapat 2: 19,6

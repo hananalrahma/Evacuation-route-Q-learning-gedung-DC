@@ -1,5 +1,7 @@
 # Evacuation-route-Q-learning-gedung-DC
-Ini adalah program untuk membuat jalur evakuasi pada gedung Digital Center UNNES lantai 1 dengan menggunakan Q-learning. Environment dibuat versi grid dengan ukurang 50x20 grid. Terdapat dua jenis environment yaitu environment dengan obstacle tambahan dan environment tanpa obstacle tambahan. Adapun gambar dari masing-masing encironment dapat dilihat di bawah.
+Ini adalah program untuk membuat jalur evakuasi pada gedung Digital Center UNNES lantai 1 dengan menggunakan Q-learning. Environment dibuat versi grid dengan ukurang 50x20. Denah dari gedung DC lantai 1 adalah sebagai berikut
+![Denah gedung DC lantai 1](Result/lantai_1_new.jpg)
+Terdapat dua jenis environment yang dibuat berdasarkan denah di atas yaitu environment dengan obstacle tambahan dan environment tanpa obstacle tambahan. Adapun gambar dari masing-masing encironment dapat dilihat di bawah.
 
 ### 1. Gambar Enviroment Tanpa Obstacle Tambahan
 ![Environment tanpa obstacle tambahan](Result/env_50x20.png)
@@ -12,4 +14,4 @@ Agent pada kedua environment bisa dipindah ke posisi manapun. Contoh hasil train
 ### 2. Pada ruang dengan obstacle tambahan
 ![Training ruang 1A dengan osbtacle tambahan](Result/With%20additional%20obstacle/1A/Screenshot_3.png)
 
-Untuk menjalankan program, jalankan terlebih dahulu perintah `pip install requirements.txt` untuk menginstall semua library yang dibutuhkan.
+Untuk menjalankan program, jalankan terlebih dahulu perintah `pip install requirements.txt` untuk menginstall semua library yang dibutuhkan. Kemudian letakkan agent pada koordinat yang diinginkan. Daftar koordinat agent bisa dilihat pada [koordinat_agent.txt](Program/koordinat_agent.txt).
