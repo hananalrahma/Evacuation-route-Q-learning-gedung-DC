@@ -1,74 +1,84 @@
-# jalan
 import tkinter as tk
 import random
 import matplotlib.pyplot as plt
 import threading
 import time
 
-# Ukuran grid
+# Grid size
 grid_width = 50
 grid_height = 20
 
-# Inisialisasi lingkungan grid
+# Initialize grid environment with obstacles
 environment = [[0] * grid_width for _ in range(grid_height)]
 
-# Inisialisasi posisi awal dan posisi tujuan
+# Start and goal positions
 start_position = (0, 0)
 goal_position = (grid_height - 1, grid_width - 1)
 
-# Fungsi untuk mengatur obstacle
+# Function to set obstacles in the environment
 def set_obstacle(row, col):
     environment[row][col] = 1
 
-# Fungsi untuk mengatur posisi awal agen
+# Function to set the start position of the agent
 def set_start_position(row, col):
     global start_position
     start_position = (row, col)
     draw_agent_and_goal()
 
-# Fungsi untuk mengatur posisi tujuan agen
+# Function to set the goal position of the agent
 def set_goal_position(row, col):
     global goal_position
     goal_position = (row, col)
     draw_agent_and_goal()
 
-# Inisialisasi Q-table
+# Initialize Q-table
 q_table = [[0] * 4 for _ in range(grid_width * grid_height)]
 
+# Initialize Q-table values
+for row in range(grid_height):
+    for col in range(grid_width):
+        state = row * grid_width + col
+        for action in range(4):
+            q_table[state][action] = 0
+
+# Function to choose action using epsilon-greedy policy
 def get_action(state):
-    # Memilih aksi dengan epsilon-greedy policy
     epsilon = 0.1
     if random.random() < epsilon:
         return random.randint(0, 3)
     else:
         return q_table[state].index(max(q_table[state]))
+        # max_q_values = max(q_table[state])
+        # max_indicies = [i for i, q_value in enumerate(q_table[state]) if q_value == max_q_values]
+        # if not max_indicies:
+        #     return random.randint(0,3)
+        # return random.choice(max_indicies)
 
+# Function to get reward based on the environment
 def get_reward(state, environment):
-    # Mendapatkan reward berdasarkan lingkungan
     row = state // grid_width
     col = state % grid_width
     if environment[row][col] == 1:
-        return -10  # Jika obstacle
+        return -10  # If obstacle
     elif row == goal_position[0] and col == goal_position[1]:
-        return 10  # Jika mencapai tujuan
+        return 10  # If goal is reached
     else:
-        return -1  # Jika langkah normal
-    
+        return -1  # Normal step
 
-def update_q_table(state, action, next_state, reward):
-    # Memperbarui nilai Q berdasarkan algoritma Q-learning
+# Function to update Q-table based on SARSA algorithm
+def update_q_table(state, action, next_state, next_action, reward):
     alpha = 0.1  # Learning rate
     gamma = 0.9  # Discount factor
-    q_table[state][action] += alpha * (reward + gamma * max(q_table[next_state]) - q_table[state][action])
+    q_table[state][action] += alpha * (reward + gamma * q_table[next_state][next_action] - q_table[state][action])
 
+# Function to find the shortest path using the Q-table
 def find_shortest_path():
-    # Mencari rute terpendek berdasarkan Q-table
     shortest_path = []
     state = start_position[0] * grid_width + start_position[1]
     shortest_path.append(state)
 
     while state != goal_position[0] * grid_width + goal_position[1]:
-        action = q_table[state].index(max(q_table[state]))
+        action = get_action(state)
         row = state // grid_width
         col = state % grid_width
 
@@ -83,10 +93,8 @@ def find_shortest_path():
 
         state = row * grid_width + col
         shortest_path.append(state)
-        
 
     return shortest_path
-
 # Menghitung jumlah langkah terpendek
 def display_shortest_path_length():
     shortest_path = find_shortest_path()
@@ -107,8 +115,8 @@ root = tk.Tk()
 canvas = tk.Canvas(root, width=1000, height=400)
 canvas.pack()
 
+# Function to draw the environment grid
 def draw_environment(environment):
-    # Menggambar lingkungan grid
     canvas.delete("all")
     cell_width = 20
 
@@ -125,6 +133,7 @@ def draw_environment(environment):
             canvas.create_line(x1, y1, x2, y1)
             canvas.create_line(x1, y1, x1, y2)
     root.update()
+    # root.after(10, root.update)
 
 def draw_agent_and_goal():
     # Menggambar posisi awal agen dan posisi tujuan agen
@@ -143,6 +152,7 @@ def draw_agent_and_goal():
     canvas.create_rectangle(x2 - 10, y2 - 10, x2 + 10, y2 + 10, fill="#1ACB26", tags="goal")
 
     root.update()
+    # root.after(10, root.update)
 
 def check_convergence(episode_rewards):
     # Mengecek konvergensi berdasarkan perbedaan rewards episode sebelumnya dan saat ini
@@ -154,8 +164,8 @@ def check_convergence(episode_rewards):
             return True
     return False
 
-def train_q_learning():
-    # Melatih Q-learning untuk mencari jalur terpendek
+# Function to train SARSA and find the shortest path
+def train_sarsa():
     num_episodes = 3000
     episode_rewards = []
     episode_steps = []
@@ -164,13 +174,14 @@ def train_q_learning():
     start_time = time.process_time()
 
     for episode in range(num_episodes):
-        state = start_position[0] * grid_width + start_position[1]  # Posisi awal
+        state = start_position[0] * grid_width + start_position[1]
         done = False
         episode_reward = 0
         episode_step = 0
 
+        action = get_action(state)
+
         while not done:
-            action = get_action(state)
             row = state // grid_width
             col = state % grid_width
 
@@ -184,14 +195,17 @@ def train_q_learning():
                 col = min(col + 1, grid_width - 1)
 
             next_state = row * grid_width + col
+            next_action = get_action(next_state)
             reward = get_reward(next_state, environment)
-            update_q_table(state, action, next_state, reward)
+
+            update_q_table(state, action, next_state, next_action, reward)
+
             state = next_state
+            action = next_action
 
             episode_reward += reward
             episode_step += 1
 
-            # Cek apakah mencapai tujuan
             if row == goal_position[0] and col == goal_position[1]:
                 done = True
 
@@ -201,13 +215,10 @@ def train_q_learning():
         if check_convergence(episode_rewards) and converged_episode == -1:
             converged_episode = episode
             end_time = time.process_time()
-            elapsed_time = end_time - start_time
-            print("Time to Convergence:", elapsed_time, "seconds")
-        
-    # Menampilkan Q-table setelah training selesai
-    # display_shortest_q_table()
+            print("Time to Convergence:", end_time - start_time, "seconds")
 
-    # Menampilkan rute terpendek
+            # time.sleep(0.001)
+            
     shortest_path = find_shortest_path()
     print("Shortest Path:")
     print(shortest_path)
@@ -217,8 +228,6 @@ def train_q_learning():
 
     print("Converged Episode:", converged_episode)
     
-    
-    # Menggambar rute terpendek
     def draw_shortest_path():
         canvas.delete("path")
         cell_width = 20
@@ -229,6 +238,7 @@ def train_q_learning():
             y1 = row * cell_width + cell_width // 2
             canvas.create_oval(x1 - 5, y1 - 5, x1 + 5, y1 + 5, fill="blue", tags="path")
         root.update()
+        # root.after(10, root.update)
 
     draw_shortest_path()
 
@@ -236,7 +246,6 @@ def train_q_learning():
     end_time = time.process_time()
     cpu_time = end_time - start_time
     print("CPU Time:", cpu_time, "seconds")
-    
     
     #grafik terpisah 1
     plt.figure()
@@ -253,17 +262,18 @@ def train_q_learning():
     plt.ylabel('Steps')
     
     plt.show()
-    
-     
+
 def start_training():
     # Memulai proses pelatihan dalam thread terpisah
-    training_thread = threading.Thread(target=train_q_learning)
+    training_thread = threading.Thread(target=train_sarsa)
     training_thread.start()
+    
 
+# Function to initialize obstacles
 
-# Mengatur obstacle
 obstacles = [
-    (0, 3), (1, 3), (2, 3), (3, 3), (3, 2), #tembok tengah antara toilet pria dan wanita.
+    # List of obstacle coordinates
+    (0, 3), (1, 3), (2, 3), (3, 3), (3, 2),
     (3, 4), (5, 2), (5, 1), (5, 0), (5, 4),
     (5, 5), (5, 6), (5, 7), (0, 7), (1, 7),
     (2, 7), (3, 7), (4, 7), (5, 7), (6, 7),
@@ -281,17 +291,19 @@ obstacles = [
     (15, 30), (15, 31), (15, 32), (15, 33), (15, 34),
     (15, 35), (16, 35), (17, 35), (18, 35),
     (10, 12), (10, 13), (10, 14), (10, 15), (10, 16),
-    (10, 17), (10, 18), (10, 19), (10, 21), 
-    (10, 20), (9, 20), (8, 20), (7, 20), (6, 20), (5, 20), (4, 20), (3, 20), (2, 20), (1, 20), (0, 20),
+    (10, 17), (10, 18), (10, 19), (10, 21),
+    (10, 20), (9, 20), (8, 20), (7, 20), (6, 20), (10, 46),
+    (5, 20), (4, 20), (3, 20), (2, 20), (1, 20), (0, 20),
     (10, 22), (10, 23), (10, 24), (10, 25), (10, 26),
-    (10, 27), (10, 28), (10, 34),
+    (10, 27), (10, 28), (10, 34), (10, 33),
     (10, 34), (10, 35), (10, 36), (10, 37), (10, 38),
-    (10, 39), (10, 40), (9, 46), (10, 45),
+    (10, 39), (10, 40), (9, 46), (10, 45), (10, 41),
     (8, 46), (7, 46), (6, 46), (5, 46), (4, 46), (3, 46),
     (2, 46), (1, 46), (0, 46), (9, 33), (8, 33), (7, 33),
     (6, 33), (5, 33), (4, 33), (3, 33), (2, 33), (1, 33),
-    (0, 33), (10, 32), (19, 5), (19, 15), (19, 28), (19, 35), (10, 20),
-    (10, 29), (10, 33), (10, 41), (10, 42), (10, 46)# Tambahkan obstacle lainnya di sini
+    (0, 33), (10, 32), (19, 5), (19, 15), (19, 28), 
+    (19, 35), (10, 20), (10, 29)
+    # (10, 29), (10, 33), (10, 41), (10, 42), (10, 46)
 ]
 
 for obstacle in obstacles:
@@ -299,31 +311,28 @@ for obstacle in obstacles:
     if row < grid_height and col < grid_width:
         set_obstacle(row, col)
 
+# Initialize obstacles
+# initialize_obstacles()
+
 draw_environment(environment)
 draw_agent_and_goal()
 
 # Mengatur posisi awal agen
 set_start_position(1, 34)
-
 # daftar koordinat awal agen:
 # 1A: 1,34
 # 1B: 1,22
 # 1C: 1,9
-# ruang power: 19,34
 # ruang rapat 1: 19,27
 # ruang rapat 2: 19,6
-# toilet difabel: 9,6
-# tempat wudu: 7,6
-# toilet perempuan: 0,6
-# toilet laki-laki: 0,0
-# dapur: 6, 0
 
 
 # Mengatur posisi tujuan agen
 set_goal_position(grid_height - 8, grid_width - 50)
 
-# Tombol untuk memulai pelatihan
-start_button = tk.Button(root, text="Start Training", command=start_training)
+# Button to start SARSA training
+start_button = tk.Button(root, text="Start SARSA Training", command=start_training)
 start_button.pack()
+
 
 root.mainloop()
