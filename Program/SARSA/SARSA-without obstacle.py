@@ -48,12 +48,7 @@ def get_action(state):
         return random.randint(0, 3)
     else:
         return q_table[state].index(max(q_table[state]))
-        # max_q_values = max(q_table[state])
-        # max_indicies = [i for i, q_value in enumerate(q_table[state]) if q_value == max_q_values]
-        # if not max_indicies:
-        #     return random.randint(0,3)
-        # return random.choice(max_indicies)
-
+       
 # Function to get reward based on the environment
 def get_reward(state, environment):
     row = state // grid_width
@@ -302,7 +297,7 @@ obstacles = [
     (2, 46), (1, 46), (0, 46), (9, 33), (8, 33), (7, 33),
     (6, 33), (5, 33), (4, 33), (3, 33), (2, 33), (1, 33),
     (0, 33), (10, 32), (19, 5), (19, 15), (19, 28), 
-    (19, 35), (10, 20), (10, 29)
+    (19, 35), (10, 20)
     # (10, 29), (10, 33), (10, 41), (10, 42), (10, 46)
 ]
 
@@ -311,20 +306,12 @@ for obstacle in obstacles:
     if row < grid_height and col < grid_width:
         set_obstacle(row, col)
 
-# Initialize obstacles
-# initialize_obstacles()
 
 draw_environment(environment)
 draw_agent_and_goal()
 
 # Mengatur posisi awal agen
 set_start_position(1, 34)
-# daftar koordinat awal agen:
-# 1A: 1,34
-# 1B: 1,22
-# 1C: 1,9
-# ruang rapat 1: 19,27
-# ruang rapat 2: 19,6
 
 
 # Mengatur posisi tujuan agen

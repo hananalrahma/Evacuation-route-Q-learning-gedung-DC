@@ -301,13 +301,6 @@ draw_agent_and_goal()
 
 # Mengatur posisi awal agen
 set_start_position(1, 34)
-# daftar koordinat awal agen:
-# 1A: 1,34
-# 1B: 1,22
-# 1C: 1,9
-# ruang rapat 1: 19,27
-# ruang rapat 2: 19,6
-
 
 # Mengatur posisi tujuan agen
 set_goal_position(grid_height - 8, grid_width - 50)
