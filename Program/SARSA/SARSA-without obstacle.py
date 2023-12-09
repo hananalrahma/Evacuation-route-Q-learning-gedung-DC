@@ -161,7 +161,7 @@ def check_convergence(episode_rewards):
 
 # Function to train SARSA and find the shortest path
 def train_sarsa():
-    num_episodes = 3000
+    num_episodes = 5000
     episode_rewards = []
     episode_steps = []
     converged_episode = -1
@@ -223,7 +223,7 @@ def train_sarsa():
 
     print("Converged Episode:", converged_episode)
     
-    def draw_shortest_path():
+    def draw_shortest_path():    
         canvas.delete("path")
         cell_width = 20
         for state in shortest_path:
@@ -234,8 +234,9 @@ def train_sarsa():
             canvas.create_oval(x1 - 5, y1 - 5, x1 + 5, y1 + 5, fill="blue", tags="path")
         root.update()
         # root.after(10, root.update)
-
     draw_shortest_path()
+
+    
 
     # Mengukur CPU time
     end_time = time.process_time()
